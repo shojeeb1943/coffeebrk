@@ -11,7 +11,8 @@ export default function FeedByIdsPage({
   children,
 }: MainFeedPageProps): ReactElement {
   const router = useRouter();
-  const { user, tokenRefreshed } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, tokenRefreshed  } = authContext || {};
 
   useEffect(() => {
     if (tokenRefreshed && (!user || !user?.isTeamMember)) {

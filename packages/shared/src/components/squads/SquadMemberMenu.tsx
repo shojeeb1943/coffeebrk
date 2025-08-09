@@ -139,7 +139,8 @@ export default function SquadMemberMenu({
   onUpdateRole,
 }: SquadMemberMenuProps): ReactElement {
   const { openModal } = useLazyModal();
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const { showPrompt } = usePrompt();
   const { displayToast } = useToastNotification();
   const { isValidRegion: isPlusAvailable } = useAuthContext();

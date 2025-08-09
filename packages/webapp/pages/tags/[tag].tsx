@@ -136,7 +136,8 @@ const TagTopSources = ({ tag }: { tag: string }) => {
 const TagPage = ({ tag, initialData }: TagPageProps): ReactElement => {
   const { isFallback, push } = useRouter();
   const showRoadmap = useFeature(feature.showRoadmap);
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const mostUpvotedQueryVariables = useMemo(
     () => ({
       tag,

@@ -45,7 +45,8 @@ const useReferralCampaign = ({
     (useFeatureIsOn(featureFlag) || (!featureFlag && isValidCampaignKey)) &&
     enabled;
   const { requestMethod } = useRequestProtocol();
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const queryKey = generateQueryKey(RequestKey.ReferralCampaigns, user, {
     referralOrigin: campaignKey,
   });

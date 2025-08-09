@@ -30,7 +30,8 @@ export const ReadingReminder = ({
   onClickNext,
   headline,
 }: ReadingReminderProps): ReactElement => {
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const { logEvent } = useContext(LogContext);
   const [loading, setLoading] = useState(false);
   const [userTimeZone, setUserTimeZone] = useState<string>(

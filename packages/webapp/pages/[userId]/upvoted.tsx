@@ -28,7 +28,8 @@ const ProfileUpvotedPage = ({
   user,
   noindex,
 }: ProfileLayoutProps): ReactElement => {
-  const { user: loggedUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user: loggedUser  } = authContext || {};
   const { shouldUseListFeedLayout } = useFeedLayout();
 
   const isSameUser = user && loggedUser?.id === user.id;

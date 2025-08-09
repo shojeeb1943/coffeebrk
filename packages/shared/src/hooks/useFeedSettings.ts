@@ -42,7 +42,8 @@ export default function useFeedSettings({
   enabled = true,
   feedId,
 }: UseFeedSettingsProps = {}): FeedSettingsReturnType {
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const filtersKey = getFeedSettingsQueryKey(user, feedId);
   const { data: feedQuery = {}, isPending } = useQuery<AllTagCategoriesData>({
     queryKey: filtersKey,

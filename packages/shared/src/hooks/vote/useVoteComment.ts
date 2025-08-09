@@ -40,7 +40,8 @@ export const useVoteComment = ({
   >,
   'toggleUpvote' | 'toggleDownvote'
 > => {
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const { logEvent } = useContext(LogContext);
 
   const { upvote, downvote, cancelVote } = useVote({

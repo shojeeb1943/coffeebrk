@@ -192,7 +192,8 @@ export default function MainFeedLayout({
 }: MainFeedLayoutProps): ReactElement {
   useScrollRestoration();
   const { sortingEnabled, loadedSettings } = useContext(SettingsContext);
-  const { user, tokenRefreshed } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, tokenRefreshed  } = authContext || {};
   const { alerts } = useContext(AlertContext);
   const router = useRouter();
   const [tab, setTab] = useState(ExploreTabs.Popular);

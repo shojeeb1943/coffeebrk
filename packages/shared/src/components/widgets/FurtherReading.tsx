@@ -31,7 +31,8 @@ export default function FurtherReading({
   const postId = currentPost.id;
   const { tags } = currentPost;
   const queryKey = ['furtherReading', postId];
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, isLoggedIn  } = authContext || {};
   const max = 3;
   const { data: posts, isLoading } = useQuery<FurtherReadingData>({
     queryKey,

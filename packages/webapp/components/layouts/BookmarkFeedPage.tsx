@@ -27,7 +27,8 @@ export default function BookmarkFeedPage({
   ...props
 }: BookmarkFeedPageProps): ReactElement {
   const router = useRouter();
-  const { user, tokenRefreshed } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, tokenRefreshed  } = authContext || {};
 
   useEffect(() => {
     if (!user && tokenRefreshed) {

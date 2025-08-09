@@ -55,7 +55,8 @@ export const VerifiedCompanyBadgeSection = ({
   workEmail,
   setWorkEmail,
 }: VerifiedCompanyBadgeSectionProps): ReactElement => {
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const queryClient = useQueryClient();
   const { userCompanies } = useUserCompaniesQuery();
   const { displayToast } = useToastNotification();

@@ -5,7 +5,8 @@ import AuthContext from '../contexts/AuthContext';
 
 export default function useRequirePermissions(role: Roles): void {
   const router = useRouter();
-  const { user, tokenRefreshed } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, tokenRefreshed  } = authContext || {};
 
   useEffect(() => {
     if (tokenRefreshed) {

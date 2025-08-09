@@ -48,7 +48,8 @@ const themes: { label: string; value: string }[] = [
 const themesLabels = themes.map((t) => t.label);
 
 const Step1 = ({ onGenerateImage, error }: StepProps): ReactElement => {
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const [themeIndex, setThemeIndex] = useState(0);
   const onClick = user
     ? () => onGenerateImage({ theme: themes[themeIndex].value })
@@ -90,7 +91,8 @@ const Step1 = ({ onGenerateImage, error }: StepProps): ReactElement => {
 };
 
 const Step2 = ({ roast, error }: StepProps): ReactElement => {
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const { mutateAsync: onDownloadUrl, isPending: isLoading } = useMutation({
     mutationFn: downloadUrl,
   });

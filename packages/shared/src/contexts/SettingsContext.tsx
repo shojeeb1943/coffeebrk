@@ -146,7 +146,8 @@ export const SettingsContextProvider = ({
   loadedSettings,
 }: SettingsContextProviderProps): ReactElement => {
   const setTheme = useRef<ThemeMode>(null);
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const userId = user?.id;
   const { unsubscribePersonalizedDigest } = usePersonalizedDigest();
 

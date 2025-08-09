@@ -30,7 +30,8 @@ interface ReportPostProps {
 }
 
 export default function useReportPost(): UseReportPostRet {
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const { requestMethod } = useRequestProtocol();
   const { mutateAsync: reportPostAsync } = useMutation<
     void,

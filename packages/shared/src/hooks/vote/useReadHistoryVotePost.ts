@@ -11,7 +11,8 @@ export type UseReadHistoryVotePost = UseVotePost;
 
 export const useReadHistoryVotePost = (): UseReadHistoryVotePost => {
   const queryClient = useQueryClient();
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
 
   const votePost = useVotePost({
     variables: { key: RequestKey.ReadingHistory },

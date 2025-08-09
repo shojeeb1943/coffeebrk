@@ -99,7 +99,8 @@ const SquadPage = ({ handle, initialData }: SourcePageProps): ReactElement => {
   const { logEvent } = useContext(LogContext);
   const { sidebarRendered } = useSidebarRendered();
   const { shouldUseListFeedLayout, shouldUseListMode } = useFeedLayout();
-  const { user, isFetched: isBootFetched } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, isFetched: isBootFetched  } = authContext || {};
   const [loggedImpression, setLoggedImpression] = useState(false);
   const { squad, isLoading, isFetched, isForbidden } = useSquad({ handle });
   const squadId = squad?.id;

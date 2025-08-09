@@ -61,7 +61,8 @@ export default function MainComment({
   logClick,
   ...props
 }: MainCommentProps): ReactElement {
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const { logEvent } = useContext(LogContext);
   const isLoggedImpression = useRef(false);
   const showNotificationPermissionBanner = useMemo(

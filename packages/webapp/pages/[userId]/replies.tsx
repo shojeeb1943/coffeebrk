@@ -36,7 +36,8 @@ const ProfileCommentsPage = ({
   user,
   noindex,
 }: ProfileLayoutProps): ReactElement => {
-  const { user: loggedUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user: loggedUser  } = authContext || {};
   const isSameUser = user && loggedUser?.id === user.id;
   const userId = user?.id;
 

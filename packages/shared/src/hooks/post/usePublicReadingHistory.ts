@@ -18,7 +18,8 @@ interface UseReadingHistory {
 }
 
 export const usePublicReadingHistory = (): UseReadingHistory => {
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const key = ['readHistory', user?.id];
   const queryProps = {
     key,

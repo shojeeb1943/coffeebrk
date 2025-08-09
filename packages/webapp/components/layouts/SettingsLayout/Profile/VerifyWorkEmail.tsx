@@ -33,7 +33,8 @@ const VerifyWorkEmail = ({
   workEmail?: string;
 }): ReactElement => {
   const queryClient = useQueryClient();
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const { displayToast } = useToastNotification();
   const [hint, setHint] = useState<string>();
   const [code, setCode] = useState<string>();

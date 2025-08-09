@@ -57,7 +57,8 @@ const selectedMapToTitle: Record<keyof UseActiveNav, string> = {
 
 const MobileFooterNavbar = (): ReactElement => {
   const router = useRouter();
-  const { user, squads, isValidRegion } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, squads, isValidRegion  } = authContext || {};
   const feedName = getFeedName(router.pathname, { hasUser: !!user });
   const activeNav = useActiveNav(feedName);
   const showPlusButton = isValidRegion && !user?.isPlus;

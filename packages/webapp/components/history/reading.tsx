@@ -26,7 +26,8 @@ const PostsSearch = dynamic(
 
 export function ReadingHistory(): ReactElement {
   const router = useRouter();
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const searchQuery = router.query?.q?.toString();
   const key = generateQueryKey(RequestKey.ReadingHistory, user);
   const queryProps = useMemo(() => {

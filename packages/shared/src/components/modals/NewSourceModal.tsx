@@ -87,7 +87,8 @@ export default function NewSourceModal(props: ModalProps): ReactElement {
   const [feeds, setFeeds] = useState<{ label: ReactNode; value: string }[]>();
   const [selectedFeed, setSelectedFeed] = useState<string>();
   const [existingSource, setExistingSource] = useState<Source>();
-  const { user, isLoggedIn, loginState, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, isLoggedIn, loginState, showLogin  } = authContext || {};
   const loginTrigger = AuthTriggers.SubmitNewSource;
   const { onRequestClose } = props;
   const [isDismissed, setIsDismissed] = usePersistentContext(

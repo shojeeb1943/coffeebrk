@@ -20,7 +20,8 @@ export const SidebarItem = ({
   isItemsButton,
   shouldShowLabel,
 }: SidebarItemProps): ReactElement => {
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
 
   const isActive = (activeItem: SidebarMenuItem) => {
     return activeItem.active || activeItem.path === activePage;

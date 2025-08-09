@@ -82,7 +82,8 @@ const ProfileIndex = ({
     logEvent({ event_name: LogEvent.UpdateProfile });
   };
   const { updateUserProfile, isLoading, hint } = useProfileForm({ onSuccess });
-  const { user, updateUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, updateUser  } = authContext || {};
   const [coverImage, setCoverImage] = useState(user?.cover);
   const currentCoverImage = coverImage || user?.cover;
   const isMobile = useViewSize(ViewSize.MobileL);

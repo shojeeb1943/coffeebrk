@@ -58,7 +58,8 @@ export const SocialRegistrationForm = ({
   simplified,
 }: SocialRegistrationFormProps): ReactElement => {
   const { logEvent } = useContext(LogContext);
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const [nameHint, setNameHint] = useState<string>(null);
   const [usernameHint, setUsernameHint] = useState<string>(null);
   const [twitterHint, setTwitterHint] = useState<string>(null);

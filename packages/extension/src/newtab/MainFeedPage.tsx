@@ -41,7 +41,8 @@ export default function MainFeedPage({
   const { alerts } = useContext(AlertContext);
   const { logEvent } = useLogContext();
   const [isSearchOn, setIsSearchOn] = useState(false);
-  const { user, loadingUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, loadingUser  } = authContext || {};
   const [feedName, setFeedName] = useState<string>('default');
   const [searchQuery, setSearchQuery] = useState<string>();
   const { shouldUseListFeedLayout } = useFeedLayout({ feedRelated: false });

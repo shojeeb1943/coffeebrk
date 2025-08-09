@@ -80,7 +80,8 @@ function EditableReadme({
 }
 
 export function Readme({ user }: ReadmeProps): ReactElement {
-  const { user: loggedUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user: loggedUser  } = authContext || {};
   const isSameUser = loggedUser?.id === user.id;
   const readme = user?.readmeHtml;
 

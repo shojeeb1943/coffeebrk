@@ -22,7 +22,8 @@ import { interactiveFeedEmpty } from '../../lib/image';
 import { Image } from '../image/Image';
 
 const InteractiveFeedStep = (): ReactElement => {
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [onSearch] = useDebounceFn(setSearchQuery, 200);
   const { feedSettings } = useFeedSettings({});

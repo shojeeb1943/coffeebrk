@@ -114,7 +114,8 @@ export default function useFeed<T>(
   const router = useRouter();
   const { logEvent } = useLogContext();
   const { query, variables, options = {}, settings, onEmptyFeed } = params;
-  const { user, tokenRefreshed } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, tokenRefreshed  } = authContext || {};
   const { isPlus } = usePlusSubscription();
   const queryClient = useQueryClient();
   const { fetchTranslations } = useTranslation({

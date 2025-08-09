@@ -22,7 +22,8 @@ interface ReportCommentProps {
 }
 
 export default function useReportComment(): UseReportCommentRet {
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const { requestMethod } = useRequestProtocol();
   const { mutateAsync: reportCommentAsync } = useMutation<
     void,

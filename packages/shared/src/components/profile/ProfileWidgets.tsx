@@ -50,7 +50,8 @@ export function ProfileWidgets({
   enableSticky,
 }: ProfileWidgetsProps): ReactElement {
   const { logEvent } = useLogContext();
-  const { user: loggedUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user: loggedUser  } = authContext || {};
   const isSameUser = loggedUser?.id === user.id;
   const stats = { ...userStats, reputation: user?.reputation };
   const isTouchDevice = !useViewSize(ViewSize.Laptop);

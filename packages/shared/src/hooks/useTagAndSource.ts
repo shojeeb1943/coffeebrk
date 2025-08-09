@@ -55,7 +55,8 @@ export default function useTagAndSource({
 }: UseTagAndSourceProps): UseTagAndSource {
   const queryClient = useQueryClient();
   const { alerts, updateAlerts } = useContext(AlertContext);
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const { logEvent } = useContext(LogContext);
   const shouldShowLogin = useCallback(
     (requireLogin?: boolean) => (user ? false : requireLogin),

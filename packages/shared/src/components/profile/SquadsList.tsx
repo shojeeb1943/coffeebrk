@@ -41,7 +41,8 @@ function SquadItem({
   membership: SourceMember;
   loading?: boolean;
 }): ReactElement {
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const router = useRouter();
   const squad = membership.source;
   const showJoin = !squad.currentMember?.role && !loading;
@@ -144,7 +145,8 @@ export function SquadsList({
   userId,
 }: SquadsListProps): ReactElement {
   const isWide = useViewSize(ViewSize.Tablet);
-  const { user: loggedUser, tokenRefreshed } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user: loggedUser, tokenRefreshed  } = authContext || {};
   const { data: remoteMemberships } = useQuery<{
     sources: ProfileV2['sources'];
   }>({

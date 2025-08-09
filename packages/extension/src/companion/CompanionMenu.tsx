@@ -80,7 +80,8 @@ export default function CompanionMenu({
 }: CompanionMenuProps): ReactElement {
   const { modal, closeModal } = useLazyModal();
   const { logEvent } = useContext(LogContext);
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const { showPrompt } = usePrompt();
   const [reportModal, setReportModal] = useState<boolean>();
   const { displayToast } = useToastNotification();

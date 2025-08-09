@@ -158,7 +158,8 @@ export default function Feed<T>({
   const origin = Origin.Feed;
   const { logEvent } = useContext(LogContext);
   const currentSettings = useContext(FeedContext);
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user  } = authContext || {};
   const { isFallback, query: routerQuery } = useRouter();
   const { openNewTab, spaciness, loadedSettings } = useContext(SettingsContext);
   const { isListMode } = useFeedLayout();

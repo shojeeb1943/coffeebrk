@@ -17,7 +17,8 @@ import { ActionType } from '../../graphql/actions';
 
 const useVote = ({ onMutate, entity, variables }: UseVoteProps): UseVote => {
   const { requestMethod } = useRequestProtocol();
-  const { user, showLogin } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, showLogin  } = authContext || {};
   const mutationKey = createVoteMutationKey({ entity, variables });
   const { completeAction } = useActions();
 

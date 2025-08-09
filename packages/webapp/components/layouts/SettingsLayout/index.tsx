@@ -62,7 +62,8 @@ export default function SettingsLayout({
   children,
 }: PropsWithChildren): ReactElement {
   const router = useRouter();
-  const { user: profile, isAuthReady } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user: profile, isAuthReady  } = authContext || {};
   const isMobile = useViewSize(ViewSize.MobileL);
   const isLaptop = useViewSize(ViewSize.Laptop);
   const canPurchaseCores = useCanPurchaseCores();

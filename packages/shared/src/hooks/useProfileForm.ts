@@ -122,7 +122,8 @@ const useProfileForm = ({
   onSuccess,
   onError,
 }: UseProfileFormProps = {}): UseProfileForm => {
-  const { user, updateUser } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, updateUser  } = authContext || {};
   const { displayToast } = useToastNotification();
   const [hint, setHint] = useState<ProfileFormHint>({});
   const { isPending: isLoading, mutate: updateUserProfile } = useMutation<

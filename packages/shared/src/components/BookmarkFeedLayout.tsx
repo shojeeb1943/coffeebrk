@@ -72,7 +72,8 @@ export default function BookmarkFeedLayout({
     FeedPageLayoutComponent,
     shouldUseListMode,
   } = useFeedLayout();
-  const { user, tokenRefreshed } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const { user, tokenRefreshed  } = authContext || {};
   const [showSharedBookmarks, setShowSharedBookmarks] = useState(false);
   const isLaptop = useViewSize(ViewSize.Laptop);
   const isFolderPage = !!folder || isReminderOnly;
