@@ -33,7 +33,7 @@ const usePostNavigationPosition = ({
   );
 
   const onLoad = useCallback(() => {
-    const modal = document.getElementById('post-modal');
+    const modal = globalThis?.document?.getElementById('post-modal');
 
     if (!modal) {
       return;

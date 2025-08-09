@@ -33,7 +33,7 @@ const brokenWebviewPatterns = [
 ];
 
 export function shouldRedirectAuth(): boolean {
-  const ua = navigator.userAgent;
+  const ua = globalThis?.navigator?.userAgent;
 
   return brokenWebviewPatterns.some((pattern) => pattern.test(ua));
 }

@@ -17,7 +17,7 @@ export const usePromotionModal = (): void => {
     const squad = squads.find(({ id, handle }) =>
       [id, handle].includes(query.sid as string),
     );
-    const { origin, pathname } = window.location;
+    const { origin, pathname } = globalThis?.window?.location;
 
     if (!squad) {
       replace(origin + pathname);

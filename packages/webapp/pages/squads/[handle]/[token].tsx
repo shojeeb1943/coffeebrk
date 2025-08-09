@@ -76,7 +76,7 @@ const getJoinRedirectUrl = ({
   query: ParsedUrlQuery;
 }): string => {
   const postId = query?.post as string;
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = new URLSearchParams(globalThis?.window?.location.search);
 
   if (postId) {
     searchParams.delete('post');

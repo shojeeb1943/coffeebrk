@@ -32,7 +32,7 @@ export function useCopyLink(
 
     if (link) {
       // write the link to clipboard
-      await navigator.clipboard.writeText(link);
+      await globalThis?.navigator?.clipboard.writeText(link);
 
       // try with a shortened link as well, if requested
       if (shortenLink) {
@@ -42,7 +42,7 @@ export function useCopyLink(
               return new Blob([shortenedLink], { type: 'text/plain' });
             }),
           });
-          await navigator.clipboard.write([clipBoardItem]);
+          await globalThis?.navigator?.clipboard.write([clipBoardItem]);
         } catch (e) {
           // eslint-disable-next-line no-console
           console.warn('Error copying to clipboard', e);
@@ -67,7 +67,7 @@ export function useCopyText(text?: string): [boolean, CopyNotifyFunction] {
   const { displayToast } = useToastNotification();
 
   const copy: CopyNotifyFunction = async (props = {}) => {
-    await navigator.clipboard.writeText(props.textToCopy || text);
+    await globalThis?.navigator?.clipboard.writeText(props.textToCopy || text);
     displayToast(props.message || defaultMessage, props);
 
     setCopying(true);

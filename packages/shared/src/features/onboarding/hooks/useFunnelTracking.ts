@@ -192,10 +192,10 @@ export const useFunnelTracking = ({
         sendBeacon();
       }
     };
-    window.addEventListener('beforeunload', callback);
+    globalThis?.window?.addEventListener('beforeunload', callback);
 
     return () => {
-      window.removeEventListener('beforeunload', callback);
+      globalThis?.window?.removeEventListener('beforeunload', callback);
     };
   }, [sendBeacon]);
 

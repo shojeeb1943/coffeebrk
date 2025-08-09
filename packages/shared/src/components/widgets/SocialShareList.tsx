@@ -52,7 +52,7 @@ export function SocialShareList({
           ? emailTitle ?? description
           : description,
     });
-    window.open(shareLink, '_blank');
+    globalThis?.window?.open(shareLink, '_blank');
   };
 
   return (

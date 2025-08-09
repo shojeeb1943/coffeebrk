@@ -110,7 +110,7 @@ const CorePageMobile = (): ReactElement => {
         return;
       }
 
-      const searchParams = new URLSearchParams(window.location.search);
+      const searchParams = new URLSearchParams(globalThis?.window?.location.search);
       const nextParams = new URLSearchParams();
 
       if (searchParams.get('next')) {
@@ -195,7 +195,7 @@ const CorePageRenderer = ({ children }: { children: ReactNode }): ReactNode => {
       return;
     }
 
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis?.window?.location.search);
     params.delete('pid');
     router?.replace(getPathnameWithQuery(router?.pathname, params));
 
@@ -241,7 +241,7 @@ const CoresPage = (): ReactElement => {
       origin={eventOrigin}
       onCompletion={() => {
         router?.push(
-          getRedirectNextPath(new URLSearchParams(window.location.search)),
+          getRedirectNextPath(new URLSearchParams(globalThis?.window?.location.search)),
         );
       }}
       amountNeeded={amountNeeded || undefined}

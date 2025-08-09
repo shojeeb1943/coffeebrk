@@ -224,7 +224,7 @@ it('should send event with duration', async () => {
 });
 
 it('should send pending events when page becomes invisible', async () => {
-  window.navigator.sendBeacon = jest.fn();
+  globalThis?.window?.globalThis?.navigator?.sendBeacon = jest.fn();
 
   const callback = async ({ logEventStart }: LogContextData) => {
     logEventStart('event', { event_name: 'e1' });
@@ -252,7 +252,7 @@ it('should send pending events when page becomes invisible', async () => {
       <LogContextTester callback={callback} />
     </TestComponent>,
   );
-  await waitFor(() => expect(window.navigator.sendBeacon).toBeCalledTimes(1));
+  await waitFor(() => expect(globalThis?.window?.globalThis?.navigator?.sendBeacon).toBeCalledTimes(1));
 });
 
 it('should send pending events when user information is fetched', async () => {

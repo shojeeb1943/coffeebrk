@@ -24,14 +24,14 @@ export function useLazyModal<
   });
   const openModal = useCallback(
     (data: T) => {
-      scrollPosition = window.scrollY;
+      scrollPosition = globalThis?.window?.scrollY;
 
       client.setQueryData(MODAL_KEY, data);
     },
     [client],
   );
   const closeModal = useCallback(() => {
-    window.scrollTo(0, scrollPosition);
+    globalThis?.window?.scrollTo(0, scrollPosition);
     scrollPosition = 0;
 
     client.setQueryData(MODAL_KEY, null);

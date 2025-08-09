@@ -39,7 +39,7 @@ export default function CustomLinksModal(props: ModalProps): ReactElement {
   const displayRevoke = !isManual && hasTopSites !== null;
 
   useEffect(() => {
-    document.body.classList.add('hidden-scrollbar');
+    globalThis?.document?.body.classList.add('hidden-scrollbar');
 
     logRef.current({
       event_name: LogEvent.OpenShortcutConfig,
@@ -47,7 +47,7 @@ export default function CustomLinksModal(props: ModalProps): ReactElement {
     });
 
     return () => {
-      document.body.classList.remove('hidden-scrollbar');
+      globalThis?.document?.body.classList.remove('hidden-scrollbar');
     };
   }, []);
 

@@ -41,7 +41,7 @@ const getRedirectUriMock = jest.fn();
 
 beforeEach(() => {
   nock.cleanAll();
-  localStorage.clear();
+  globalThis?.localStorage?.clear();
 });
 
 const defaultAlerts: Alerts = { filter: true, rankLastSeen: null };

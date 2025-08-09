@@ -50,11 +50,11 @@ export function useExitConfirmation({
       throw new Error('Cancelling navigation');
     };
 
-    window.addEventListener('beforeunload', closeHandler);
+    globalThis?.window?.addEventListener('beforeunload', closeHandler);
     router.events.on('routeChangeStart', routeHandler);
 
     return () => {
-      window.removeEventListener('beforeunload', closeHandler);
+      globalThis?.window?.removeEventListener('beforeunload', closeHandler);
       router.events.off('routeChangeStart', routeHandler);
     };
   }, [checkShouldAskConfirmation, message, router]);

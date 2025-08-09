@@ -65,9 +65,9 @@ interface ComponentGetLayout {
 }
 
 const getRedirectUri = () =>
-  `${window.location.origin}${window.location.pathname}`;
+  `${globalThis?.window?.location.origin}${globalThis?.window?.location.pathname}`;
 
-const getPage = () => window.location.pathname;
+const getPage = () => globalThis?.window?.location.pathname;
 
 function InternalApp({ Component, pageProps, router }: AppProps): ReactElement {
   const { isOnboardingActionsReady, isOnboardingComplete } =
@@ -103,10 +103,10 @@ function InternalApp({ Component, pageProps, router }: AppProps): ReactElement {
       user &&
       !didRegisterSwRef.current &&
       'serviceWorker' in globalThis?.navigator &&
-      window.serwist !== undefined
+      globalThis?.window?.serwist !== undefined
     ) {
       didRegisterSwRef.current = true;
-      window.serwist.register();
+      globalThis?.window?.serwist.register();
     }
   }, [user]);
 
@@ -210,7 +210,7 @@ function InternalApp({ Component, pageProps, router }: AppProps): ReactElement {
 
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.addEventListener('load', () => { window.windowLoaded = true; }, {
+            __html: `globalThis?.window?.addEventListener('load', () => { globalThis?.window?.windowLoaded = true; }, {
       once: true,
     });`,
           }}
@@ -237,7 +237,7 @@ function InternalApp({ Component, pageProps, router }: AppProps): ReactElement {
           onAccepted={onAcceptCookies}
           onHideBanner={onHideBanner}
           onModalClose={() => {
-            const interacted = !!localStorage.getItem(cookieAcknowledgedKey);
+            const interacted = !!globalThis?.localStorage?.getItem(cookieAcknowledgedKey);
 
             if (!interacted) {
               onOpenBanner();

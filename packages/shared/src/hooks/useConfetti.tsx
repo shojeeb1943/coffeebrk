@@ -170,10 +170,10 @@ export const useConfetti = (): UseConfettiReturn => {
         // Remove confetti that is faded out or off-screen
         return (
           confetti.opacity > 0 &&
-          confetti.y < window.innerHeight + 100 &&
+          confetti.y < globalThis?.window?.innerHeight + 100 &&
           confetti.y > -100 &&
           confetti.x > -100 &&
-          confetti.x < window.innerWidth + 100
+          confetti.x < globalThis?.window?.innerWidth + 100
         );
       });
   }, []);
@@ -217,8 +217,8 @@ export const useConfetti = (): UseConfettiReturn => {
     const canvas = canvasRef.current;
 
     // Set canvas to full window size
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = globalThis?.window?.innerWidth;
+    canvas.height = globalThis?.window?.innerHeight;
 
     // Generate confetti pieces
     confettiPiecesRef.current = generateConfetti();

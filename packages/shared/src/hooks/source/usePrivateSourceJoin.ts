@@ -51,7 +51,7 @@ export const usePrivateSourceJoin = ({
       return;
     }
 
-    const searchParams = new URLSearchParams(window.location.search);
+    const searchParams = new URLSearchParams(globalThis?.window?.location.search);
     searchParams.delete('jt');
     searchParams.delete('source');
     searchParams.delete('type');

@@ -17,7 +17,7 @@ export function useAuthVerificationRecovery(): void {
 
   const displayErrorMessage = useCallback(
     (text: string) => {
-      const link = stripLinkParameters(window.location.href);
+      const link = stripLinkParameters(globalThis?.window?.location.href);
       router.replace(link);
       setTimeout(() => displayToast(text), 100);
     },

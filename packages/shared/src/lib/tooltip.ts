@@ -3,5 +3,5 @@ export const isTouchDevice = (): boolean => {
     return false;
   }
 
-  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  return 'ontouchstart' in window || globalThis?.navigator?.maxTouchPoints > 0;
 };

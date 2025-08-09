@@ -52,7 +52,7 @@ export const useSlack = (): UseSlack => {
         sameSite: 'lax',
       });
 
-      window.location.href = url.toString();
+      globalThis?.window?.location.href = url.toString();
     },
     [user?.id],
   );

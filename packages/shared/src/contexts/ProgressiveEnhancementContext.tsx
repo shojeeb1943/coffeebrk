@@ -42,7 +42,7 @@ export const ProgressiveEnhancementContextProvider = ({
     if ('windowLoaded' in window) {
       requestIdleCallback(callback);
     }
-    window.addEventListener('load', callback, {
+    globalThis?.window?.addEventListener('load', callback, {
       once: true,
     });
   }, []);

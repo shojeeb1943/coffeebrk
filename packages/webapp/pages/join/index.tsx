@@ -40,10 +40,10 @@ const Page = ({
   });
 
   useEffect(() => {
-    document.body.classList.add('hidden-scrollbar');
+    globalThis?.document?.body.classList.add('hidden-scrollbar');
 
     return () => {
-      document.body.classList.remove('hidden-scrollbar');
+      globalThis?.document?.body.classList.remove('hidden-scrollbar');
     };
   }, []);
 

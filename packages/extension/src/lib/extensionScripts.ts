@@ -103,7 +103,7 @@ export const requestContentScripts: CreateRequestContentScripts = (
       await registerBrowserContentScripts();
 
       if (!skipRedirect) {
-        window.open(companionPermissionGrantedLink, '_blank');
+        globalThis?.window?.open(companionPermissionGrantedLink, '_blank');
       }
     } else {
       logEvent({

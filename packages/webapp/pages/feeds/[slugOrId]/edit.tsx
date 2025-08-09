@@ -34,10 +34,10 @@ const EditFeedPage = (): ReactElement => {
   const isFeedEditRestricted = !isPlus && feed?.node.type === FeedType.Custom;
 
   useEffect(() => {
-    document.body.classList.add('hidden-scrollbar');
+    globalThis?.document?.body.classList.add('hidden-scrollbar');
 
     return () => {
-      document.body.classList.remove('hidden-scrollbar');
+      globalThis?.document?.body.classList.remove('hidden-scrollbar');
     };
   }, []);
 

@@ -90,7 +90,7 @@ export const remoteThemes: Record<ThemeMode, RemoteTheme> = {
 
 export function applyTheme(
   themeMode: ThemeMode,
-  el: HTMLElement = document.documentElement,
+  el: HTMLElement = globalThis?.document?.documentElement,
 ): void {
   if (!el || el.classList.contains(themeMode)) {
     return;

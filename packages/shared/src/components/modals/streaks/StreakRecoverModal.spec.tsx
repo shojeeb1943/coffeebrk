@@ -206,7 +206,7 @@ it('should render and fetch initial data if logged user can recover streak', asy
 });
 
 it('should update alerts preferences on close', async () => {
-  window.scrollTo = jest.fn();
+  globalThis?.window?.scrollTo = jest.fn();
 
   mockRecoveryQuery({
     canRecover: true,
@@ -232,7 +232,7 @@ it('should update alerts preferences on close', async () => {
 });
 
 it('Should have no cost for first time recovery', async () => {
-  window.scrollTo = jest.fn();
+  globalThis?.window?.scrollTo = jest.fn();
 
   mockRecoveryQuery({
     canRecover: true,
@@ -322,7 +322,7 @@ it('Should show buy Cores message if user does not have enough Cores', async () 
 });
 
 it('Should show success message on recover', async () => {
-  window.scrollTo = jest.fn();
+  globalThis?.window?.scrollTo = jest.fn();
 
   mockRecoveryQuery({
     canRecover: true,
@@ -369,7 +369,7 @@ it('Should show success message on recover', async () => {
 });
 
 it('Should dismiss popup on close if checked option', async () => {
-  window.scrollTo = jest.fn();
+  globalThis?.window?.scrollTo = jest.fn();
 
   mockRecoveryQuery({
     canRecover: true,
@@ -413,7 +413,7 @@ it('Should dismiss popup on close if checked option', async () => {
 });
 
 it('Should show error message on recover fail', async () => {
-  window.scrollTo = jest.fn();
+  globalThis?.window?.scrollTo = jest.fn();
 
   mockRecoveryQuery({
     canRecover: true,

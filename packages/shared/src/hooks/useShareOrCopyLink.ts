@@ -30,7 +30,7 @@ export function useShareOrCopyLink({
 
     if (shouldUseNativeShare()) {
       try {
-        await navigator.share({
+        await globalThis?.navigator?.share({
           text: `${text}\n${shortLink}`,
         });
         logEvent(logObject(ShareProvider.Native));

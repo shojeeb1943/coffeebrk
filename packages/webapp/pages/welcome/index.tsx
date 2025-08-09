@@ -87,20 +87,20 @@ const DemoPage = (): ReactElement => {
   useEffect(() => {
     if (isLaptop) {
       router.replace(
-        getPathnameWithQuery(onboardingUrl, window.location.search),
+        getPathnameWithQuery(onboardingUrl, globalThis?.window?.location.search),
       );
     }
   }, [isLaptop, router]);
 
   useEffect(() => {
     if (isAuthReady && isLoggedIn) {
-      router.replace(getPathnameWithQuery(webappUrl, window.location.search));
+      router.replace(getPathnameWithQuery(webappUrl, globalThis?.window?.location.search));
     }
   }, [isAuthReady, isLoggedIn, router]);
 
   const [didScroll, setDidScroll] = useState(false);
   useEventListener(globalThis, 'scroll', () => {
-    setDidScroll(window.scrollY > 100);
+    setDidScroll(globalThis?.window?.scrollY > 100);
   });
   const hasData = !!queryClient.getQueryData(feedProps.feedQueryKey);
   const showSignupFooter = didScroll || hasData;

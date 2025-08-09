@@ -28,7 +28,7 @@ export const AcquisitionFormInner = ({ className }: Props): ReactElement => {
   );
   const router = useRouter();
   const onRemoveQueryParams = () => {
-    const updatedUrl = removeQueryParam(window.location.href, acquisitionKey);
+    const updatedUrl = removeQueryParam(globalThis?.window?.location.href, acquisitionKey);
     router.replace(updatedUrl);
   };
   const onDismiss = () => {

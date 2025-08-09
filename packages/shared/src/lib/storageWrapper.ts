@@ -3,7 +3,7 @@ export default function Storage(): Partial<Storage> {
 
   function isLocalStorageEnabled() {
     try {
-      return 'localStorage' in window && window.localStorage !== null;
+      return 'localStorage' in window && globalThis?.window?.localStorage !== null;
     } catch (e) {
       return false;
     }
@@ -11,14 +11,14 @@ export default function Storage(): Partial<Storage> {
 
   function getItem(key: string): string | null {
     if (isLocalStorageEnabled()) {
-      return localStorage.getItem(key);
+      return globalThis?.localStorage?.getItem(key);
     }
     return inMemoryStorage[key];
   }
 
   function setItem(key: string, value: string): void {
     if (isLocalStorageEnabled()) {
-      localStorage.setItem(key, value);
+      globalThis?.localStorage?.setItem(key, value);
     } else {
       inMemoryStorage[key] = value;
     }
@@ -26,7 +26,7 @@ export default function Storage(): Partial<Storage> {
 
   function removeItem(key: string): void {
     if (isLocalStorageEnabled()) {
-      localStorage.removeItem(key);
+      globalThis?.localStorage?.removeItem(key);
     } else {
       delete inMemoryStorage[key];
     }
@@ -34,7 +34,7 @@ export default function Storage(): Partial<Storage> {
 
   function clear(): void {
     if (isLocalStorageEnabled()) {
-      localStorage.clear();
+      globalThis?.localStorage?.clear();
     } else {
       Object.keys(inMemoryStorage).forEach((key) => {
         delete inMemoryStorage[key];

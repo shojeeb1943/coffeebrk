@@ -41,7 +41,7 @@ export default function useLogImpression(
             row,
             extra: {
               ...feedLogExtra(feedName, ranking, {
-                scroll_y: window.scrollY,
+                scroll_y: globalThis?.window?.scrollY,
               }).extra,
               clickbait_badge:
                 item.post.type === PostType.Share

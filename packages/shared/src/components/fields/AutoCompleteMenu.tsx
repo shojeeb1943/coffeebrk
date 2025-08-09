@@ -68,6 +68,6 @@ export default function AutoCompleteMenu({
         </div>
       ))}
     </div>,
-    document.body,
+    globalThis?.document?.body,
   );
 }

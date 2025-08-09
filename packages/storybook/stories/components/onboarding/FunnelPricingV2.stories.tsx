@@ -42,7 +42,7 @@ const meta: Meta<typeof FunnelPricingV2> = {
   ),
   play: () => {
     // clear start date from localStorage at the beginning of each story
-    localStorage.removeItem(DISCOUNT_LOCAL_STORAGE_KEY);
+    globalThis?.localStorage?.removeItem(DISCOUNT_LOCAL_STORAGE_KEY);
   },
 };
 

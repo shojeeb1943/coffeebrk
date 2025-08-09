@@ -18,7 +18,7 @@ function WebPixelsProvider({
 }: PixelsContextProviderProps): ReactElement {
   const context: PixelsContextData = {
     trackSignup({ id, email, experienceLevel }) {
-      const urlParams = new URLSearchParams(window.location.search);
+      const urlParams = new URLSearchParams(globalThis?.window?.location.search);
       const isExtension = urlParams.get('ref') === 'install';
 
       const isEngineer =

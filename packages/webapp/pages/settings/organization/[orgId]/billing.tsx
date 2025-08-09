@@ -136,7 +136,7 @@ const Page = (): ReactElement => {
                   daily.dev for teams
                 </Typography>
                 <Typography bold type={TypographyType.Body}>
-                  {new Intl.NumberFormat(navigator.language, {
+                  {new Intl.NumberFormat(globalThis?.navigator?.language, {
                     style: 'currency',
                     currency: pricing.currency.code,
                   }).format(data.total.amount)}
@@ -155,7 +155,7 @@ const Page = (): ReactElement => {
                   type={TypographyType.Footnote}
                   color={TypographyColor.Tertiary}
                 >
-                  {new Intl.NumberFormat(navigator.language, {
+                  {new Intl.NumberFormat(globalThis?.navigator?.language, {
                     style: 'currency',
                     currency: pricing.currency.code,
                   }).format(pricing.price?.monthly?.amount)}

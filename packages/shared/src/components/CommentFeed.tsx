@@ -106,7 +106,7 @@ export default function CommentFeed<T>({
               onCommented={() => undefined}
               postAuthorId={null}
               postScoutId={null}
-              appendTooltipTo={() => document.body}
+              appendTooltipTo={() => globalThis?.document?.body}
               linkToComment
               lazy
               showContextHeader

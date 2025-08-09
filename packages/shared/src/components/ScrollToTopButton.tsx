@@ -24,10 +24,10 @@ export default function ScrollToTopButton(): ReactElement {
 
   useEffect(() => {
     const callback = () => {
-      setShow(document.documentElement.scrollTop >= window.innerHeight / 2);
+      setShow(globalThis?.document?.documentElement.scrollTop >= globalThis?.window?.innerHeight / 2);
     };
-    window.addEventListener('scroll', callback, { passive: true });
-    return () => window.removeEventListener('scroll', callback);
+    globalThis?.window?.addEventListener('scroll', callback, { passive: true });
+    return () => globalThis?.window?.removeEventListener('scroll', callback);
   }, []);
 
   if (!show) {
@@ -36,7 +36,7 @@ export default function ScrollToTopButton(): ReactElement {
 
   const props: ButtonProps<'button'> = {
     icon: <ArrowIcon />,
-    onClick: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+    onClick: () => globalThis?.window?.scrollTo({ top: 0, behavior: 'smooth' }),
   };
 
   const style: CSSProperties = {

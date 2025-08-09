@@ -17,7 +17,7 @@ export default function useDebounceFn<T = unknown>(
   }, [callback]);
 
   useEffect(() => {
-    return () => window.clearTimeout(timeoutRef.current);
+    return () => globalThis?.window?.clearTimeout(timeoutRef.current);
   }, []);
 
   const memoizedCallback = useCallback(
@@ -31,9 +31,9 @@ export default function useDebounceFn<T = unknown>(
         return;
       }
       if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current);
+        globalThis?.window?.clearTimeout(timeoutRef.current);
       }
-      timeoutRef.current = window.setTimeout(() => {
+      timeoutRef.current = globalThis?.window?.setTimeout(() => {
         lastExecutionRef.current = new Date();
         timeoutRef.current = null;
         callbackRef.current?.(args);
@@ -44,7 +44,7 @@ export default function useDebounceFn<T = unknown>(
 
   const cancelCallback = useCallback(() => {
     if (timeoutRef.current) {
-      window.clearTimeout(timeoutRef.current);
+      globalThis?.window?.clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
   }, [timeoutRef]);

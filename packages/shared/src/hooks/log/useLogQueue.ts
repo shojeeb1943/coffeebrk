@@ -81,7 +81,7 @@ export default function useLogQueue({
             type: 'application/json',
           });
           if (isDevelopment && window) {
-            window.postMessage({
+            globalThis?.window?.postMessage({
               type: 'FYLLA_LOG_DO_NOT_USE_OR_YOU_WILL_BE_FIRED',
               events,
             });
@@ -100,7 +100,7 @@ export default function useLogQueue({
               },
             });
           } else {
-            navigator.sendBeacon(LOG_ENDPOINT, blob);
+            globalThis?.navigator?.sendBeacon(LOG_ENDPOINT, blob);
           }
         }
       },

@@ -17,7 +17,7 @@ export const fileValidation = {
   acceptedTypes: [
     'application/pdf',
     'application/docx', // docx file
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // docx file
+    'application/vnd.openxmlformats-officeglobalThis?.document?.wordprocessingml.document', // docx file
   ],
   acceptedExtensions: ['pdf', 'docx'],
 };

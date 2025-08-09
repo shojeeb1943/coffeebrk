@@ -7,7 +7,7 @@ export function useError(): void {
 
   useEffect(() => {
     if (logEvent) {
-      window.onerror = (msg, url, line, col, error) => {
+      globalThis?.window?.onerror = (msg, url, line, col, error) => {
         logEvent({
           event_name: LogEvent.GlobalError,
           extra: JSON.stringify({

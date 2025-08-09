@@ -12,17 +12,17 @@ import {
 } from '@dailydotdev/shared/src/features/onboarding/shared';
 
 const checkShouldSendBroadcast = () => {
-  const ua = navigator.userAgent;
-  const isFromFacebook = document.referrer === 'https://www.facebook.com/';
+  const ua = globalThis?.navigator?.userAgent;
+  const isFromFacebook = globalThis?.document?.referrer === 'https://www.facebook.com/';
   const isInstagramWebview = /Instagram/i.test(ua);
-  const postMessageUndefined = !window.opener?.postMessage;
+  const postMessageUndefined = !globalThis?.window?.opener?.postMessage;
   const conditions = [isFromFacebook, isInstagramWebview, postMessageUndefined];
 
   return conditions.some(Boolean);
 };
 
 const handleRedirectAuth = (params: URLSearchParams) => {
-  const href = window.sessionStorage.getItem(AUTH_REDIRECT_KEY);
+  const href = globalThis?.window?.sessionStorage.getItem(AUTH_REDIRECT_KEY);
 
   if (href) {
     const [redirect, hrefParams] = href.split('?');
@@ -32,14 +32,14 @@ const handleRedirectAuth = (params: URLSearchParams) => {
       params.set(key, value),
     );
 
-    window.location.replace(`${redirect}?${params}`);
+    globalThis?.window?.location.replace(`${redirect}?${params}`);
   }
 };
 
 function CallbackPage(): ReactElement {
   const { logEvent } = useContext(LogContext);
   useEffect(() => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
+    const urlSearchParams = new URLSearchParams(globalThis?.window?.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     const eventKey = params.login
       ? AuthEvent.Login
@@ -50,8 +50,8 @@ function CallbackPage(): ReactElement {
     });
     const search = new URLSearchParams(params);
     try {
-      if (!window.opener && params.flow && params.settings) {
-        window.location.replace(`/reset-password?${search}`);
+      if (!globalThis?.window?.opener && params.flow && params.settings) {
+        globalThis?.window?.location.replace(`/reset-password?${search}`);
         return;
       }
 
@@ -66,10 +66,10 @@ function CallbackPage(): ReactElement {
         postWindowMessage(eventKey, params);
       }
 
-      window.close();
+      globalThis?.window?.close();
     } catch (err) {
       const url = `${process.env.NEXT_PUBLIC_WEBAPP_URL}?${search}`;
-      window.location.replace(url);
+      globalThis?.window?.location.replace(url);
     }
     // @NOTE see https://dailydotdev.atlassian.net/l/cp/dK9h1zoM
     // eslint-disable-next-line react-hooks/exhaustive-deps

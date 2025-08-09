@@ -10,11 +10,11 @@ export default class CustomRouter implements NextRouter {
   asPath = '/';
 
   back(): void {
-    window.history.back();
+    globalThis?.window?.history.back();
   }
 
   forward(): void {
-    window.history.forward();
+    globalThis?.window?.history.forward();
   }
 
   basePath = '/';
@@ -47,18 +47,18 @@ export default class CustomRouter implements NextRouter {
   }
 
   async push(url: Url): Promise<boolean> {
-    window.location.href = url as string;
+    globalThis?.window?.location.href = url as string;
     return true;
   }
 
   query = {};
 
   reload(): void {
-    window.location.reload();
+    globalThis?.window?.location.reload();
   }
 
   async replace(url: Url): Promise<boolean> {
-    window.location.href = url as string;
+    globalThis?.window?.location.href = url as string;
     return true;
   }
 

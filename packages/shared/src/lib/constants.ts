@@ -38,10 +38,10 @@ export const isTesting =
 export const isGBDevMode = process.env.NEXT_PUBLIC_GB_DEV_MODE === 'true';
 
 export const isBrave = (): boolean => {
-  if (!window.Promise) {
+  if (!globalThis?.window?.Promise) {
     return false;
   }
-  return typeof navigator.brave?.isBrave === 'function';
+  return typeof globalThis?.navigator?.brave?.isBrave === 'function';
 };
 export const isChrome = (): boolean =>
   /Chrome/.test(globalThis?.navigator?.userAgent) &&

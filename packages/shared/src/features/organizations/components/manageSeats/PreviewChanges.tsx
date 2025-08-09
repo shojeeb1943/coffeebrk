@@ -109,7 +109,7 @@ export const PreviewChanges = ({
           <div className="ml-auto flex flex-col gap-0.5 text-right">
             <Typography type={TypographyType.Body}>
               <span className="font-bold">
-                {new Intl.NumberFormat(navigator.language, {
+                {new Intl.NumberFormat(globalThis?.navigator?.language, {
                   style: 'decimal',
                 }).format(pricing.price?.monthly?.amount)}
               </span>{' '}

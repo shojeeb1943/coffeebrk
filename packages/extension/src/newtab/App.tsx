@@ -93,7 +93,7 @@ function InternalApp(): ReactElement {
   }, [contentScriptGranted]);
 
   useEffect(() => {
-    document.title = unreadCount
+    globalThis?.document?.title = unreadCount
       ? `(${unreadCount}) ${DEFAULT_TAB_TITLE}`
       : DEFAULT_TAB_TITLE;
   }, [unreadCount]);

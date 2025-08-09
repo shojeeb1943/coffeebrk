@@ -15,7 +15,7 @@ export const PlusHeader = (): ReactElement => {
   const { back, replace, isReady } = useRouter();
 
   const onBackClick = useCallback(() => {
-    if (window.history?.length > 1) {
+    if (globalThis?.window?.history?.length > 1) {
       back();
     } else {
       replace(webappUrl);

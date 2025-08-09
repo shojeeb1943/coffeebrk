@@ -44,14 +44,14 @@ export const socialCTA = {
 };
 
 /**
- * NOTE! document.referrer does not contain a referrer on localhost
+ * NOTE! globalThis?.document?.referrer does not contain a referrer on localhost
  */
 export const getSocialReferrer = (): SocialIconType | null => {
-  if (!document.referrer) {
+  if (!globalThis?.document?.referrer) {
     return null;
   }
 
-  const url = new URL(document.referrer);
+  const url = new URL(globalThis?.document?.referrer);
   const host = url.hostname;
 
   if (host.includes('reddit.')) {

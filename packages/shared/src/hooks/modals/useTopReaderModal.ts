@@ -19,7 +19,7 @@ export const useTopReaderModal = (): void => {
         badgeId: query.badgeId as string,
         origin: Origin.NotificationsPage,
         onAfterClose: () => {
-          const { origin, pathname } = window.location;
+          const { origin, pathname } = globalThis?.window?.location;
           replace(origin + pathname);
         },
       },

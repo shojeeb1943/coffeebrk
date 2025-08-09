@@ -46,7 +46,7 @@ export const useInteractiveCompletion = (): UseInteractiveCompletion => {
   const { data: posts } = useQuery<InteractiveFeedState>({
     queryKey: [RequestKey.InteractiveFeed],
     initialData: () => {
-      const postsFromStorage = localStorage.getItem(ONBOARDING_PREVIEW_KEY);
+      const postsFromStorage = globalThis?.localStorage?.getItem(ONBOARDING_PREVIEW_KEY);
 
       if (postsFromStorage) {
         return JSON.parse(postsFromStorage);
@@ -58,7 +58,7 @@ export const useInteractiveCompletion = (): UseInteractiveCompletion => {
   const updatePosts = useCallback(
     (newPosts: InteractiveFeedState) => {
       client.setQueryData([RequestKey.InteractiveFeed], newPosts);
-      localStorage.setItem(ONBOARDING_PREVIEW_KEY, JSON.stringify(newPosts));
+      globalThis?.localStorage?.setItem(ONBOARDING_PREVIEW_KEY, JSON.stringify(newPosts));
     },
 
     [client],

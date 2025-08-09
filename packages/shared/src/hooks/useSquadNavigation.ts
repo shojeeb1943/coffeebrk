@@ -54,13 +54,13 @@ export const useSquadNavigation = (): UseSquadNavigation => {
   );
 
   useEffect(() => {
-    const search = new URLSearchParams(window.location.search);
+    const search = new URLSearchParams(globalThis?.window?.location.search);
     const query = Object.fromEntries(search);
     if (!query?.squad) {
       return;
     }
 
-    const { origin, pathname } = window.location;
+    const { origin, pathname } = globalThis?.window?.location;
     openNewSquad({ origin: Origin.Notification });
     router.replace(origin + pathname);
     // @NOTE see https://dailydotdev.atlassian.net/l/cp/dK9h1zoM

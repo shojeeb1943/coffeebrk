@@ -178,7 +178,7 @@ describe('FunnelRegistration', () => {
     (shouldRedirectAuth as jest.Mock).mockReturnValue(true);
 
     // Mock window location
-    const originalLocation = window.location;
+    const originalLocation = globalThis?.window?.location;
     const mockLocation = new URL('https://daily.dev/onboarding');
     Object.defineProperty(window, 'location', {
       value: mockLocation,
@@ -203,7 +203,7 @@ describe('FunnelRegistration', () => {
       },
     });
 
-    // Restore window.location
+    // Restore globalThis?.window?.location
     Object.defineProperty(window, 'location', {
       value: originalLocation,
       writable: true,
@@ -243,7 +243,7 @@ describe('FunnelRegistration', () => {
     const mockPopupLocation = { href: '' };
     const mockPopup = { location: mockPopupLocation };
 
-    // Mock window.open to return our mock popup
+    // Mock globalThis?.window?.open to return our mock popup
     const mockWindowOpen = jest.fn().mockReturnValue(mockPopup);
     global.open = mockWindowOpen;
 
@@ -511,7 +511,7 @@ describe('FunnelRegistration', () => {
     (shouldRedirectAuth as jest.Mock).mockReturnValue(true);
 
     // Mock window location
-    const originalLocation = window.location;
+    const originalLocation = globalThis?.window?.location;
     const mockLocation = new URL('https://daily.dev/onboarding');
     Object.defineProperty(window, 'location', {
       value: mockLocation,
@@ -535,7 +535,7 @@ describe('FunnelRegistration', () => {
       },
     });
 
-    // Restore window.location
+    // Restore globalThis?.window?.location
     Object.defineProperty(window, 'location', {
       value: originalLocation,
       writable: true,

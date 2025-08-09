@@ -23,7 +23,7 @@ export const useNotificationPermissionPopup = ({
 }: UseNotificationPermissionPopupProps = {}): UseNotificationPermissionPopup => {
   const onOpenPopup = useCallback((source: NotificationPromptSource) => {
     const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=728,height=756,left=100,top=100`;
-    window.open(
+    globalThis?.window?.open(
       `${webappUrl}popup/notifications/enable?source=${source}`,
       'Enable notifications popup',
       params,

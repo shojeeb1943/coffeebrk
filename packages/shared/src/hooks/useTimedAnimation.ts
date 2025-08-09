@@ -33,7 +33,7 @@ export const useTimedAnimation = ({
       return;
     }
 
-    window.clearInterval(interval.current);
+    globalThis?.window?.clearInterval(interval.current);
     interval.current = null;
   };
 
@@ -61,7 +61,7 @@ export const useTimedAnimation = ({
         interval.current = MANUAL_DISMISS_ANIMATION_ID;
       }
 
-      interval.current = window.setInterval(
+      interval.current = globalThis?.window?.setInterval(
         () =>
           setTimer((current) =>
             PROGRESS_INTERVAL >= current ? 0 : current - PROGRESS_INTERVAL,
@@ -85,7 +85,7 @@ export const useTimedAnimation = ({
 
   useEffect(() => {
     return () => {
-      window.clearInterval(interval.current);
+      globalThis?.window?.clearInterval(interval.current);
       interval.current = null;
     };
   }, []);

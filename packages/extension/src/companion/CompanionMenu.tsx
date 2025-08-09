@@ -136,7 +136,7 @@ export default function CompanionMenu({
     const cleanup = () => {
       setShowCompanionHelper(false);
     };
-    window.addEventListener('beforeunload', cleanup);
+    globalThis?.window?.addEventListener('beforeunload', cleanup);
     return () => cleanup();
     // @NOTE see https://dailydotdev.atlassian.net/l/cp/dK9h1zoM
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -169,7 +169,7 @@ export default function CompanionMenu({
 
   const onToggleUpvote = async () => {
     if (!user) {
-      window.open(
+      globalThis?.window?.open(
         `${process.env.NEXT_PUBLIC_WEBAPP_URL}signup?close=true`,
         '_blank',
       );
@@ -182,7 +182,7 @@ export default function CompanionMenu({
 
   const onToggleDownvote = async () => {
     if (!user) {
-      window.open(
+      globalThis?.window?.open(
         `${process.env.NEXT_PUBLIC_WEBAPP_URL}signup?close=true`,
         '_blank',
       );
@@ -204,7 +204,7 @@ export default function CompanionMenu({
         await removeBookmark({ id: post.id });
       }
     } else {
-      window.open(
+      globalThis?.window?.open(
         `${process.env.NEXT_PUBLIC_WEBAPP_URL}signup?close=true`,
         '_blank',
       );

@@ -16,8 +16,8 @@ ReactModal.setAppElement('body');
 
 beforeEach(() => {
   client = new QueryClient();
-  localStorage.clear();
-  document.cookie = '';
+  globalThis?.localStorage?.clear();
+  globalThis?.document?.cookie = '';
   Object.values(GdprConsentKey).forEach((key) => {
     expireCookie(key);
   });

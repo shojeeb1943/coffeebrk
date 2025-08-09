@@ -162,7 +162,7 @@ function AccountSecurityDefault({
       }
       await onUpdateSignBack(null, null);
       globalThis?.localStorage.removeItem(BOOT_LOCAL_KEY);
-      window.location.replace('/');
+      globalThis?.window?.location.replace('/');
     }
   };
 

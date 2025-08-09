@@ -73,12 +73,12 @@ const Toast = ({
     }
 
     const handler = () => dismissToast();
-    window.addEventListener('scroll', handler);
+    globalThis?.window?.addEventListener('scroll', handler);
     router.events.on('routeChangeStart', handler);
 
     // eslint-disable-next-line consistent-return
     return () => {
-      window.removeEventListener('scroll', handler);
+      globalThis?.window?.removeEventListener('scroll', handler);
       router.events.off('routeChangeStart', handler);
     };
     // @NOTE see https://dailydotdev.atlassian.net/l/cp/dK9h1zoM

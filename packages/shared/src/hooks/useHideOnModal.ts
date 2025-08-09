@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 export function useHideOnModal(predicate: boolean): void {
   useEffect(() => {
-    const root = document.querySelector('#__next');
+    const root = globalThis?.document?.querySelector('#__next');
     if (!root) {
       return undefined;
     }

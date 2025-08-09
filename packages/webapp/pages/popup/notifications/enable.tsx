@@ -52,7 +52,7 @@ function Enable(): React.ReactElement {
     const checkPermission = async () => {
       const closeWindow = () => {
         sendBeacon();
-        window.close();
+        globalThis?.window?.close();
       };
 
       if (isSubscribed) {

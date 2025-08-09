@@ -8,7 +8,7 @@ describe('useEventListener', () => {
   });
 
   it('should render', () => {
-    const div = document.createElement('div');
+    const div = globalThis?.document?.createElement('div');
     const listener = jest.fn();
     const { result } = renderHook(() =>
       useEventListener(div, 'click', listener),
@@ -18,7 +18,7 @@ describe('useEventListener', () => {
   });
 
   it('should bind listener on mount and unbind on unmount', () => {
-    const div = document.createElement('div');
+    const div = globalThis?.document?.createElement('div');
     const listener = jest.fn();
     const addSpy = jest.spyOn(div, 'addEventListener');
     const removeSpy = jest.spyOn(div, 'removeEventListener');
@@ -42,7 +42,7 @@ describe('useEventListener', () => {
   });
 
   it('should work with react refs', () => {
-    const div = document.createElement('div');
+    const div = globalThis?.document?.createElement('div');
     const listener = jest.fn();
     const addSpy = jest.spyOn(div, 'addEventListener');
     const removeSpy = jest.spyOn(div, 'removeEventListener');

@@ -344,7 +344,7 @@ describe('squad header bar', () => {
 
     const invitation = `https://app.daily.dev/squads/webteam/3ZvloDmEbgiCKLF_eDg72JKLRPgp6MOpGDkh6qTRFr8`;
     await waitFor(() =>
-      expect(window.navigator.clipboard.writeText).toBeCalledWith(invitation),
+      expect(globalThis?.window?.globalThis?.navigator?.clipboard.writeText).toBeCalledWith(invitation),
     );
   });
 
@@ -369,7 +369,7 @@ describe('squad header bar', () => {
 
     const invitation = `https://app.daily.dev/squads/webteam?cid=squad&userid=u1`;
     await waitFor(() =>
-      expect(window.navigator.clipboard.writeText).toBeCalledWith(invitation),
+      expect(globalThis?.window?.globalThis?.navigator?.clipboard.writeText).toBeCalledWith(invitation),
     );
   });
 

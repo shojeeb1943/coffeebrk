@@ -27,7 +27,7 @@ const CoresPaymentPage = (): ReactElement => {
     }
 
     if (isLaptop || !pid) {
-      const searchParams = new URLSearchParams(window.location.search);
+      const searchParams = new URLSearchParams(globalThis?.window?.location.search);
       const nextParams = new URLSearchParams();
 
       if (searchParams.get('next')) {
@@ -51,7 +51,7 @@ const CoresPaymentPage = (): ReactElement => {
       origin={eventOrigin}
       onCompletion={() => {
         router?.push(
-          getRedirectNextPath(new URLSearchParams(window.location.search)),
+          getRedirectNextPath(new URLSearchParams(globalThis?.window?.location.search)),
         );
       }}
     >

@@ -60,7 +60,7 @@ export const useOrganizationSubscription = (
       }>(PREVIEW_SUBSCRIPTION_UPDATE_QUERY, {
         id: organizationId,
         quantity: quantity ?? seats.total,
-        locale: navigator.language,
+        locale: globalThis?.navigator?.language,
       });
 
       if (!res || !res.previewOrganizationSubscriptionUpdate) {

@@ -55,7 +55,7 @@ describe('useJoinReferral hook', () => {
       wrapper: createWrapper({}),
     });
 
-    expect(document.cookie).toBe(
+    expect(globalThis?.document?.cookie).toBe(
       `join_referral=${encodeURIComponent(
         '1:squad',
       )}; max-age=31536000; path=/; samesite=lax; secure`,
@@ -74,7 +74,7 @@ describe('useJoinReferral hook', () => {
       wrapper: createWrapper({}),
     });
 
-    expect(document.cookie).toBe('');
+    expect(globalThis?.document?.cookie).toBe('');
   });
 
   it('should expire cookie if referring user id can not be found', async () => {
@@ -108,7 +108,7 @@ describe('useJoinReferral hook', () => {
     });
 
     await waitFor(() =>
-      expect(document.cookie).toBe(`join_referral=expired; max-age=0; path=/`),
+      expect(globalThis?.document?.cookie).toBe(`join_referral=expired; max-age=0; path=/`),
     );
   });
 
@@ -132,6 +132,6 @@ describe('useJoinReferral hook', () => {
       }),
     });
 
-    expect(document.cookie).toBe('');
+    expect(globalThis?.document?.cookie).toBe('');
   });
 });

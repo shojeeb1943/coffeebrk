@@ -154,7 +154,7 @@ const SquadPage = ({ handle, initialData }: SourcePageProps): ReactElement => {
       return;
     }
 
-    const searchParams = new URLSearchParams(window.location.search);
+    const searchParams = new URLSearchParams(globalThis?.window?.location.search);
     searchParams.delete('lzym');
     router.replace(
       getPathnameWithQuery(`${webappUrl}squads/${squad.handle}`, searchParams),

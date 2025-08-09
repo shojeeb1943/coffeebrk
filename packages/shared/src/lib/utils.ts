@@ -40,7 +40,7 @@ export const formatOrganizationSubscriptionPreviewCurrency = ({
   currency: string;
   amount: number;
 }): string => {
-  return new Intl.NumberFormat(navigator.language, {
+  return new Intl.NumberFormat(globalThis?.navigator?.language, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
     style: 'currency',

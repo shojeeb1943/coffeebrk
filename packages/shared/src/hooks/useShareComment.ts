@@ -29,7 +29,7 @@ export function useShareComment(origin: Origin): UseShareComment {
             `${post.commentsPermalink}${getCommentHash(comment.id)}`,
             ReferralCampaignKey.ShareComment,
           );
-          await navigator.share({
+          await globalThis?.navigator?.share({
             text: `${post.title}\n${shortUrl}`,
           });
           logEvent(

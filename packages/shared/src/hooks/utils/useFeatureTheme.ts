@@ -33,7 +33,7 @@ export const useFeatureTheme = (): UseFeatureThemeResult | undefined => {
 
   useEffect(() => {
     const id = 'feature-theme-styles';
-    const styleElement = document.createElement('style');
+    const styleElement = globalThis?.document?.createElement('style');
     styleElement.setAttribute('id', id);
     styleElement.setAttribute('type', 'text/css');
 
@@ -53,7 +53,7 @@ export const useFeatureTheme = (): UseFeatureThemeResult | undefined => {
       css = `${css} .modal { background: ${featureTheme[theme].body.background}; }`;
     }
 
-    const oldStyleElem = document.getElementById(id);
+    const oldStyleElem = globalThis?.document?.getElementById(id);
     if (oldStyleElem?.innerText === css) {
       // nothing to do, styles were alreay applied
       return;
@@ -62,9 +62,9 @@ export const useFeatureTheme = (): UseFeatureThemeResult | undefined => {
     styleElement.textContent = css;
 
     if (oldStyleElem) {
-      document.head.replaceChild(styleElement, oldStyleElem);
+      globalThis?.document?.head.replaceChild(styleElement, oldStyleElem);
     } else {
-      document.head.appendChild(styleElement);
+      globalThis?.document?.head.appendChild(styleElement);
     }
   }, [featureTheme, theme, useTheme]);
 

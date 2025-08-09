@@ -36,7 +36,7 @@ export const WelcomePostCardFooter = ({
     [contentHtml],
   );
   const decodedText = useMemo(() => {
-    const span = document.createElement('div');
+    const span = globalThis?.document?.createElement('div');
     span.innerHTML = content || '';
     return span.innerText || content;
   }, [content]);

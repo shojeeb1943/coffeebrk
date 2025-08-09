@@ -21,7 +21,7 @@ export const useNotificationParams = (): void => {
           return;
         }
 
-        const link = stripLinkParameters(window.location.href);
+        const link = stripLinkParameters(globalThis?.window?.location.href);
         router.replace(link);
       },
     );

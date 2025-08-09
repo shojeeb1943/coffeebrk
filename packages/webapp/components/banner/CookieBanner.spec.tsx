@@ -20,8 +20,8 @@ let client: QueryClient;
 beforeEach(() => {
   jest.clearAllMocks();
   client = new QueryClient();
-  localStorage.clear();
-  document.cookie = '';
+  globalThis?.localStorage?.clear();
+  globalThis?.document?.cookie = '';
   Object.values(GdprConsentKey).forEach((key) => {
     expireCookie(key);
   });
@@ -60,7 +60,7 @@ describe('CookieBanner outside GDPR', () => {
   });
 
   it('should not render when cookie is accepted already', async () => {
-    document.cookie = `${GdprConsentKey.Necessary}=true`;
+    globalThis?.document?.cookie = `${GdprConsentKey.Necessary}=true`;
     renderComponent();
 
     await nextTick();
@@ -105,7 +105,7 @@ describe('CookieBanner under GDPR', () => {
   });
 
   it('should not render when cookie is accepted already as anonymous user', async () => {
-    document.cookie = `${GdprConsentKey.Necessary}=true`;
+    globalThis?.document?.cookie = `${GdprConsentKey.Necessary}=true`;
     await renderWrapper();
 
     const banner = screen.queryByTestId('cookie_content');
@@ -113,15 +113,15 @@ describe('CookieBanner under GDPR', () => {
   });
 
   it('should render when cookie necessary is only accepted as logged in user', async () => {
-    document.cookie = `${GdprConsentKey.Necessary}=true`;
+    globalThis?.document?.cookie = `${GdprConsentKey.Necessary}=true`;
     await renderWrapper({ user: loggedUser });
 
     await screen.findByTestId('cookie_content');
   });
 
   it('should not render when logged user interacted with the consent banner', async () => {
-    document.cookie = `${GdprConsentKey.Necessary}=true`;
-    localStorage.setItem(cookieAcknowledgedKey, 'true');
+    globalThis?.document?.cookie = `${GdprConsentKey.Necessary}=true`;
+    globalThis?.localStorage?.setItem(cookieAcknowledgedKey, 'true');
     await renderWrapper({ user: loggedUser });
 
     const banner = screen.queryByTestId('cookie_content');

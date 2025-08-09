@@ -49,7 +49,7 @@ export default function ShareBar({ post }: ShareBarProps): ReactElement {
       link: shortLink,
       text: post?.title,
     });
-    window.open(shareLink, '_blank');
+    globalThis?.window?.open(shareLink, '_blank');
   };
 
   const logAndCopyLink = async () => {

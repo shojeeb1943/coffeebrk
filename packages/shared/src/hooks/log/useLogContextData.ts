@@ -24,11 +24,11 @@ export type PostOrigin =
   | Origin.BriefModal;
 
 const getGlobalSharedProps = (): Partial<LogEvent> => ({
-  screen_height: window.screen?.height,
-  screen_width: window.screen?.width,
-  page_referrer: document.referrer,
-  window_height: window.innerHeight,
-  window_width: window.innerWidth,
+  screen_height: globalThis?.window?.screen?.height,
+  screen_width: globalThis?.window?.screen?.width,
+  page_referrer: globalThis?.document?.referrer,
+  window_height: globalThis?.window?.innerHeight,
+  window_width: globalThis?.window?.innerWidth,
   page_state: getCurrentLifecycleState(),
 });
 
@@ -72,7 +72,7 @@ export default function useLogContextData(
           durationEventsQueue.current.delete(id);
           event.event_duration =
             now.getTime() - event.event_timestamp.getTime();
-          if (window.scrollY > 0 && event.event_name !== 'page inactive') {
+          if (globalThis?.window?.scrollY > 0 && event.event_name !== 'page inactive') {
             event.page_state = 'active';
           }
           pushToQueue([event]);

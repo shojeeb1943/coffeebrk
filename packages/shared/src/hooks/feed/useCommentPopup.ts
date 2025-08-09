@@ -55,7 +55,7 @@ export default function useCommentPopup(
       );
       const link = `${data.comment.permalink}?new=true`;
       setShowCommentPopupId(null);
-      window.open(link, '_blank');
+      globalThis?.window?.open(link, '_blank');
     },
   });
 

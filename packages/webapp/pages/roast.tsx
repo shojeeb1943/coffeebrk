@@ -122,7 +122,7 @@ const Step2 = ({ roast, error }: StepProps): ReactElement => {
         <Button
           variant={ButtonVariant.Secondary}
           size={ButtonSize.Large}
-          onClick={() => window.location.reload()}
+          onClick={() => globalThis?.window?.location.reload()}
         >
           Start over
         </Button>

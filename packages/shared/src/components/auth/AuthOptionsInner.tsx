@@ -320,7 +320,7 @@ function AuthOptionsInner({
     });
     // Only web auth requires a popup
     if (!isNativeAuthSupported(provider)) {
-      windowPopup.current = window.open();
+      windowPopup.current = globalThis?.window?.open();
     }
     await setChosenProvider(provider);
     await onSocialRegistration(provider);

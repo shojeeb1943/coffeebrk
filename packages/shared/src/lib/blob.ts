@@ -21,10 +21,10 @@ export const downloadUrl = async ({
   const imageBlog = await file.blob();
   const imageURL = URL.createObjectURL(imageBlog);
 
-  const link = document.createElement('a');
+  const link = globalThis?.document?.createElement('a');
   link.href = imageURL;
   link.download = filename;
-  document.body.appendChild(link);
+  globalThis?.document?.body.appendChild(link);
   link.click();
-  document.body.removeChild(link);
+  globalThis?.document?.body.removeChild(link);
 };

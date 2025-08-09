@@ -63,7 +63,7 @@ function LoginForm({
         }
 
         const id = email ? 'password' : 'identifier';
-        const element = document.getElementById(id);
+        const element = globalThis?.document?.getElementById(id);
         if (shouldFocus && !!element) {
           element?.focus();
           setShouldFocus(false);

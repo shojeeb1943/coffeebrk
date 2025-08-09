@@ -5,10 +5,10 @@ import { useEffect } from 'react';
 
 function ErrorPage(): ReactElement {
   useEffect(() => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
+    const urlSearchParams = new URLSearchParams(globalThis?.window?.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     postWindowMessage(AuthEvent.Error, params);
-    window.close();
+    globalThis?.window?.close();
   }, []);
 
   return null;

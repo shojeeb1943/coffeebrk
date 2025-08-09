@@ -56,7 +56,7 @@ const PlusPage = ({
       logEvent({
         event_name: LogEvent.PageScroll,
         extra: JSON.stringify({
-          scrollTop: window.scrollY,
+          scrollTop: globalThis?.window?.scrollY,
         }),
       });
     };

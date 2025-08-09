@@ -39,10 +39,10 @@ export const useDynamicHeader = <T extends HTMLElement>(
 
     const callback = () => onScroll.current?.();
 
-    window.addEventListener('scroll', callback);
+    globalThis?.window?.addEventListener('scroll', callback);
 
     return () => {
-      window.removeEventListener('scroll', callback);
+      globalThis?.window?.removeEventListener('scroll', callback);
     };
   }, [onScroll, enabled]);
 

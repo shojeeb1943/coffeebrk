@@ -58,7 +58,7 @@ export function useSharePost(origin: Origin): UseSharePost {
           post.commentsPermalink,
           ReferralCampaignKey.SharePost,
         );
-        await navigator.share({
+        await globalThis?.navigator?.share({
           title: post.title,
           url: shortLink,
         });

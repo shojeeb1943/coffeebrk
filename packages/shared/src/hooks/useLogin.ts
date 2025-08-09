@@ -124,7 +124,7 @@ const useLogin = ({
       }
 
       if (redirect) {
-        window.open(redirect);
+        globalThis?.window?.open(redirect);
       }
     },
   });

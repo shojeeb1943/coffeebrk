@@ -209,7 +209,7 @@ describe('CallbackPage', () => {
   it('should handle Instagram webview case', () => {
     const search = '?login=true&token=insta';
     // Mock user agent to Instagram
-    const originalUA = navigator.userAgent;
+    const originalUA = globalThis?.navigator?.userAgent;
     Object.defineProperty(navigator, 'userAgent', {
       configurable: true,
       get: () =>

@@ -29,7 +29,7 @@ export default function CoresLayout({
   const isPageReady = isReady && isAuthReady;
 
   const onBackClick = useCallback(() => {
-    if (window.history?.length > 1) {
+    if (globalThis?.window?.history?.length > 1) {
       back();
     } else {
       replace(webappUrl);

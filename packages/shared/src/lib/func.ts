@@ -65,7 +65,7 @@ export const isAppleDevice = (): boolean => {
     return false;
   }
 
-  return appleDeviceMatch.test(window.navigator.platform);
+  return appleDeviceMatch.test(window.globalThis?.navigator?.platform);
 };
 
 export const isIOS = (): boolean =>
@@ -74,7 +74,7 @@ export const isIOS = (): boolean =>
 export const isIOSNative = (): boolean =>
   globalThis.webkit &&
   !!globalThis.webkit.messageHandlers &&
-  document.documentElement.classList.contains('ios');
+  globalThis?.document?.documentElement.classList.contains('ios');
 
 export enum ArrowKeyEnum {
   Up = 'ArrowUp',

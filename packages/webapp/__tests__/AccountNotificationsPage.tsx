@@ -102,7 +102,7 @@ globalThis.Notification = {
 } as unknown as jest.Mocked<typeof Notification>;
 
 jest
-  .spyOn(window.Notification, 'requestPermission')
+  .spyOn(globalThis?.window?.Notification, 'requestPermission')
   .mockResolvedValueOnce('granted');
 
 const renderComponent = (user = defaultLoggedUser): RenderResult => {

@@ -68,13 +68,13 @@ describe('ShareBar Test Suite:', () => {
   let origWindowOpen = null;
 
   beforeEach(() => {
-    origWindowOpen = window.open;
-    window.open = mockWindowOpen;
+    origWindowOpen = globalThis?.window?.open;
+    globalThis?.window?.open = mockWindowOpen;
   });
 
   afterEach(() => {
     mockWindowOpen.mockClear();
-    window.open = origWindowOpen;
+    globalThis?.window?.open = origWindowOpen;
   });
 
   it('should render the component for anonymous users', async () => {
@@ -133,7 +133,7 @@ describe('ShareBar Test Suite:', () => {
 
     btn.click();
     await waitFor(() =>
-      expect(window.navigator.clipboard.writeText).toBeCalledWith(
+      expect(globalThis?.window?.globalThis?.navigator?.clipboard.writeText).toBeCalledWith(
         defaultPost.commentsPermalink,
       ),
     );

@@ -75,7 +75,7 @@ export const setCookie = (
     return `${acc}; ${key}=${option}`;
   }, `${name}=${encodeURIComponent(value)}`);
 
-  document.cookie = cookieValue;
+  globalThis?.document?.cookie = cookieValue;
 };
 
 export const expireCookie = (

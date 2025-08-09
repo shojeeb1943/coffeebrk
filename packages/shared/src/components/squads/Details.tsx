@@ -52,7 +52,7 @@ const getFormData = async (
     return current;
   }
 
-  const input = document.getElementById(squadImageId) as HTMLInputElement;
+  const input = globalThis?.document?.getElementById(squadImageId) as HTMLInputElement;
   const file = input.files[0];
 
   return { ...current, file };

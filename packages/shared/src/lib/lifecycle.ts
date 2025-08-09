@@ -81,10 +81,10 @@ let wasActive = false;
  * @return {string}
  */
 const getInternalLifecycleState = (): string => {
-  if (document.visibilityState === HIDDEN) {
+  if (globalThis?.document?.visibilityState === HIDDEN) {
     return HIDDEN;
   }
-  if (document.hasFocus()) {
+  if (globalThis?.document?.hasFocus()) {
     return ACTIVE;
   }
   return PASSIVE;
@@ -99,9 +99,9 @@ export const getCurrentLifecycleState = (): string => {
 
 export default function listenToLifecycleEvents(): void {
   // Detect Safari to work around Safari-specific bugs.
-  const IS_SAFARI = !!window.safari?.pushNotification;
+  const IS_SAFARI = !!globalThis?.window?.safari?.pushNotification;
 
-  const SUPPORTS_PAGE_TRANSITION_EVENTS = 'onpageshow' in document.body;
+  const SUPPORTS_PAGE_TRANSITION_EVENTS = 'onpageshow' in globalThis?.document?.body;
 
   const EVENTS = [
     'focus',
@@ -143,7 +143,7 @@ export default function listenToLifecycleEvents(): void {
           wasActive = true;
         }
 
-        window.dispatchEvent(
+        globalThis?.window?.dispatchEvent(
           new CustomEvent('statechange', {
             bubbles: true,
             detail: {
@@ -207,9 +207,9 @@ export default function listenToLifecycleEvents(): void {
   };
 
   // Add capturing events on window so they run immediately.
-  EVENTS.forEach((evt) => window.addEventListener(evt, handleEvents, true));
+  EVENTS.forEach((evt) => globalThis?.window?.addEventListener(evt, handleEvents, true));
   ['scroll', 'mousedown', 'touchstart'].forEach((evt) =>
-    window.addEventListener(evt, handleEvents, {
+    globalThis?.window?.addEventListener(evt, handleEvents, {
       capture: true,
       once: true,
       passive: true,
@@ -224,8 +224,8 @@ export default function listenToLifecycleEvents(): void {
   // NOTE: we only add this to Safari because adding it to Firefox would
   // prevent the page from being eligible for bfcache.
   if (IS_SAFARI) {
-    window.addEventListener('beforeunload', (evt) => {
-      safariBeforeUnloadTimeout = window.setTimeout(() => {
+    globalThis?.window?.addEventListener('beforeunload', (evt) => {
+      safariBeforeUnloadTimeout = globalThis?.window?.setTimeout(() => {
         if (!(evt.defaultPrevented || evt.returnValue.length > 0)) {
           dispatchChangesIfNeeded(evt, HIDDEN);
         }

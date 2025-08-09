@@ -99,7 +99,7 @@ export default function PostsSearch({
     }
     const { left, bottom, width } =
       searchBoxRef.current.getBoundingClientRect();
-    setMenuPosition({ x: left, y: bottom + window.scrollY, width });
+    setMenuPosition({ x: left, y: bottom + globalThis?.window?.scrollY, width });
   };
 
   useEffect(() => {

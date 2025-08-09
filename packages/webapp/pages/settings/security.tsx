@@ -177,7 +177,7 @@ const AccountSecurityPage = (): ReactElement => {
           return;
         }
 
-        window.open(redirect);
+        globalThis?.window?.open(redirect);
         return;
       }
 

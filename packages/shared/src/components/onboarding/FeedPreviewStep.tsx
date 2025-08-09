@@ -28,7 +28,7 @@ const FeedPreviewStep = ({
 
   const completeOnboarding = () => {
     onComplete();
-    localStorage.setItem(ONBOARDING_PREVIEW_KEY, '');
+    globalThis?.localStorage?.setItem(ONBOARDING_PREVIEW_KEY, '');
   };
 
   const handleComplete = () => {

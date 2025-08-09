@@ -50,12 +50,12 @@ const FbTracking = ({ userId, consent, email }: PixelProps): ReactElement => {
       >
         {`
         (function() {
-  const PIXEL_ID = document.currentScript.getAttribute('data-pixel-id');
-  const userId = document.currentScript.getAttribute('data-user-id');
-  const email = document.currentScript.getAttribute('data-email');
-  const consent = document.currentScript.getAttribute('data-consent');
+  const PIXEL_ID = globalThis?.document?.currentScript.getAttribute('data-pixel-id');
+  const userId = globalThis?.document?.currentScript.getAttribute('data-user-id');
+  const email = globalThis?.document?.currentScript.getAttribute('data-email');
+  const consent = globalThis?.document?.currentScript.getAttribute('data-consent');
 
-  const queryString = window.location.search;
+  const queryString = globalThis?.window?.location.search;
   const urlParams = new URLSearchParams(queryString);
   const anonId = urlParams.get('fb_anon_id');
 
@@ -83,14 +83,14 @@ const FbTracking = ({ userId, consent, email }: PixelProps): ReactElement => {
     'https://connect.facebook.net/en_US/fbevents.js',
   );
 
-  window.updateFbUserData = (userId, email) => {
-    if (window.fbq?.instance?.pixelsByID?.[PIXEL_ID]?.userData) {
-      window.fbq.instance.pixelsByID[PIXEL_ID].userData.external_id = userId;
-      window.fbq.instance.pixelsByID[PIXEL_ID].userData.email = email;
+  globalThis?.window?.updateFbUserData = (userId, email) => {
+    if (globalThis?.window?.fbq?.instance?.pixelsByID?.[PIXEL_ID]?.userData) {
+      globalThis?.window?.fbq.instance.pixelsByID[PIXEL_ID].userData.external_id = userId;
+      globalThis?.window?.fbq.instance.pixelsByID[PIXEL_ID].userData.email = email;
     }
   };
 
-  window.fbq('consent', consent ? 'grant' : 'revoke');
+  globalThis?.window?.fbq('consent', consent ? 'grant' : 'revoke');
 
   const args = userId ? { external_id: userId } : {};
   if (anonId) {
@@ -99,7 +99,7 @@ const FbTracking = ({ userId, consent, email }: PixelProps): ReactElement => {
   if (email) {
     args.em = email;
   }
-  window.fbq('init', PIXEL_ID, args);
+  globalThis?.window?.fbq('init', PIXEL_ID, args);
 })();
       `}
       </Script>
@@ -150,12 +150,12 @@ const GtagTracking = ({
       >
         {`
        (function() {
-  const GA_ID = document.currentScript.getAttribute('data-ga-id');
-  const consent = document.currentScript.getAttribute('data-consent');
+  const GA_ID = globalThis?.document?.currentScript.getAttribute('data-ga-id');
+  const consent = globalThis?.document?.currentScript.getAttribute('data-consent');
 
-  window.dataLayer = window.dataLayer || [];
+  globalThis?.window?.dataLayer = globalThis?.window?.dataLayer || [];
 
-  window.gtag = window.gtag || function gtag() {
+  globalThis?.window?.gtag = globalThis?.window?.gtag || function gtag() {
     dataLayer.push(arguments);
   };
 
@@ -212,7 +212,7 @@ const TwitterTracking = (): ReactElement => {
     >
       {`
       (function() {
-  const TWITTER_PIXEL_ID = document.currentScript.getAttribute('data-twitter-id');
+  const TWITTER_PIXEL_ID = globalThis?.document?.currentScript.getAttribute('data-twitter-id');
 
   function initializeTwitterPixel(e, t, n, s, u, a) {
     e.twq ||
@@ -234,7 +234,7 @@ const TwitterTracking = (): ReactElement => {
     'script',
   );
 
-  window.twq('config', TWITTER_PIXEL_ID);
+  globalThis?.window?.twq('config', TWITTER_PIXEL_ID);
 })();
       `}
     </Script>
@@ -249,7 +249,7 @@ const RedditTracking = (): ReactElement => {
       data-reddit-id={REDDIT_TRACKING_ID}
     >
       {`(function() {
-  const REDDIT_PIXEL_ID = document.currentScript.getAttribute('data-reddit-id');
+  const REDDIT_PIXEL_ID = globalThis?.document?.currentScript.getAttribute('data-reddit-id');
 
   function initializeRedditPixel(w, d) {
     if (!w.rdt) {
@@ -271,9 +271,9 @@ const RedditTracking = (): ReactElement => {
     document,
   );
 
-  window.rdt('init', REDDIT_PIXEL_ID);
+  globalThis?.window?.rdt('init', REDDIT_PIXEL_ID);
 
-  window.rdt('track', 'PageVisit');
+  globalThis?.window?.rdt('track', 'PageVisit');
 })();
       `}
     </Script>
@@ -288,7 +288,7 @@ const TiktokTracking = (): ReactElement => {
       data-tiktok-id={TIKTOK_TRACKING_ID}
     >
       {`(function() {
-  const TIKTOK_PIXEL_ID = document.currentScript.getAttribute('data-tiktok-id');
+  const TIKTOK_PIXEL_ID = globalThis?.document?.currentScript.getAttribute('data-tiktok-id');
 
   function initializeTiktokPixel(w, d, t) {
     w.TiktokAnalyticsObject = t;
@@ -305,9 +305,9 @@ const TiktokTracking = (): ReactElement => {
     }, ttq.load = function(e, n) {
       var i = 'https://analytics.tiktok.com/i18n/pixel/events.js';
       ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {};
-      var o = document.createElement('script');
+      var o = globalThis?.document?.createElement('script');
       o.type = 'text/javascript', o.async = !0, o.src = i + '?sdkid=' + e + '&lib=' + t;
-      var a = document.getElementsByTagName('script')[0];
+      var a = globalThis?.document?.getElementsByTagName('script')[0];
       a.parentNode.insertBefore(o, a);
     };
 

@@ -19,9 +19,9 @@ export const arrowKeys = Object.values(ArrowKey);
 export type CaretOffset = [number, number];
 
 export const getCaretOffset = (textarea: HTMLTextAreaElement): CaretOffset => {
-  const left = document.createElement('span');
-  const right = document.createElement('span');
-  const div = document.createElement('div');
+  const left = globalThis?.document?.createElement('span');
+  const right = globalThis?.document?.createElement('span');
+  const div = globalThis?.document?.createElement('div');
 
   left.innerText = textarea.value.substring(0, textarea.selectionStart);
   right.innerText = textarea.value.substring(textarea.selectionStart);

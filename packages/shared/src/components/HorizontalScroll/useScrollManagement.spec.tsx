@@ -28,7 +28,7 @@ describe('useScrollManagement', () => {
     onScrollMock = jest.fn();
 
     mockRef = {
-      current: document.createElement('div'),
+      current: globalThis?.document?.createElement('div'),
     };
 
     Object.defineProperty(mockRef.current, 'scrollWidth', {

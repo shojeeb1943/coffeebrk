@@ -5,13 +5,13 @@ export const responsiveModalBreakpoint = mobileL;
 
 export function useResetScrollForResponsiveModal(): void {
   useEffect(() => {
-    if (window.matchMedia) {
-      const mediaQuery = window.matchMedia(
+    if (globalThis?.window?.matchMedia) {
+      const mediaQuery = globalThis?.window?.matchMedia(
         responsiveModalBreakpoint.replace('@media ', ''),
       );
       if (!mediaQuery.matches) {
-        window.scroll(0, 0);
-        document.querySelector('[role="dialog"]')?.scroll?.(0, 0);
+        globalThis?.window?.scroll(0, 0);
+        globalThis?.document?.querySelector('[role="dialog"]')?.scroll?.(0, 0);
       }
     }
   }, []);

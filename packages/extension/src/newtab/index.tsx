@@ -18,17 +18,17 @@ declare global {
   }
 }
 
-window.addEventListener(
+globalThis?.window?.addEventListener(
   'load',
   () => {
-    window.windowLoaded = true;
+    globalThis?.window?.windowLoaded = true;
   },
   {
     once: true,
   },
 );
 
-const root = createRoot(document.getElementById('__next'));
+const root = createRoot(globalThis?.document?.getElementById('__next'));
 
 const renderApp = (data?: BootCacheData) => {
   root.render(<App localBootData={data} />);
@@ -36,7 +36,7 @@ const renderApp = (data?: BootCacheData) => {
 
 const redirectApp = async (url: string) => {
   const tab = await browser.tabs.getCurrent();
-  window.stop();
+  globalThis?.window?.stop();
   await browser.tabs.update(tab.id, { url });
 };
 
@@ -47,7 +47,7 @@ const redirectApp = async (url: string) => {
     applyTheme(themeModes[data.settings.theme]);
   }
 
-  const source = window.location.href.split('source=')[1];
+  const source = globalThis?.window?.location.href.split('source=')[1];
 
   if (source) {
     return renderApp(data);

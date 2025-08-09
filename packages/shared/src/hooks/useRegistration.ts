@@ -98,7 +98,7 @@ const useRegistration = ({
         origin: Origin.InitializeRegistrationFlow,
       }),
     });
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis?.window?.location.search);
     const afterAuth = params.get(AFTER_AUTH_PARAM);
     /**
      * In case a valid session exists on kratos, but not FE we should logout the user.
@@ -168,12 +168,12 @@ const useRegistration = ({
       // If it's native auth, we can proceed by simulating the callback page
       if (params?.params?.id_token) {
         if (successfulData?.session?.active) {
-          return window.postMessage({
+          return globalThis?.window?.postMessage({
             eventKey: AuthEvent.SocialRegistration,
             social_registration: true,
           });
         }
-        return window.postMessage({
+        return globalThis?.window?.postMessage({
           eventKey: AuthEvent.SocialRegistration,
           social_registration: true,
           flow: error?.id,

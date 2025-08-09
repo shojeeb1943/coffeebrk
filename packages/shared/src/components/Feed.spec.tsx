@@ -138,16 +138,16 @@ beforeEach(() => {
   variables = defaultVariables;
 });
 
-const originalScrollTo = window.scrollTo;
+const originalScrollTo = globalThis?.window?.scrollTo;
 
 beforeAll(() => {
-  window.scrollTo = jest.fn();
+  globalThis?.window?.scrollTo = jest.fn();
   // is desktop
   jest.spyOn(hooks, 'useViewSize').mockImplementation(() => true);
 });
 
 afterAll(() => {
-  window.scrollTo = originalScrollTo;
+  globalThis?.window?.scrollTo = originalScrollTo;
 });
 
 const createTagsSettingsMock = (

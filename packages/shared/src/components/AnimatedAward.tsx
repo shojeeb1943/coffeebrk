@@ -76,7 +76,7 @@ export const AnimatedAwardImage = ({
       </button>
       {showAnimation && (
         <Portal
-          container={document.querySelector('.award-easter-egg-container')}
+          container={globalThis?.document?.querySelector('.award-easter-egg-container')}
         >
           <AnimatedAward
             src={showAnimation ? award.image : ''}

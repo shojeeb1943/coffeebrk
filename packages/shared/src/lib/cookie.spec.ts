@@ -11,7 +11,7 @@ describe('cookie', () => {
   it('should set', () => {
     setCookie('foo', 'bar');
 
-    expect(document.cookie).toBe('foo=bar');
+    expect(globalThis?.document?.cookie).toBe('foo=bar');
   });
 
   it('should set with options', () => {
@@ -23,7 +23,7 @@ describe('cookie', () => {
       sameSite: 'strict',
     });
 
-    expect(document.cookie).toBe(
+    expect(globalThis?.document?.cookie).toBe(
       'foo=bar; domain=daily.dev; max-age=315360000; partitioned; path=/; samesite=strict',
     );
   });
@@ -34,7 +34,7 @@ describe('cookie', () => {
       expires: new Date('2021-01-01'),
     });
 
-    expect(document.cookie).toBe(
+    expect(globalThis?.document?.cookie).toBe(
       'foo=bar; expires=Fri, 01 Jan 2021 00:00:00 GMT; path=/',
     );
   });
@@ -45,7 +45,7 @@ describe('cookie', () => {
       secure: true,
     });
 
-    expect(document.cookie).toBe('foo=bar; path=/; secure');
+    expect(globalThis?.document?.cookie).toBe('foo=bar; path=/; secure');
   });
 
   it('should not set with boolean option', () => {
@@ -54,7 +54,7 @@ describe('cookie', () => {
       secure: false,
     });
 
-    expect(document.cookie).toBe('foo=bar; path=/');
+    expect(globalThis?.document?.cookie).toBe('foo=bar; path=/');
   });
 
   it('should encode value', () => {
@@ -63,7 +63,7 @@ describe('cookie', () => {
       secure: false,
     });
 
-    expect(document.cookie).toBe(
+    expect(globalThis?.document?.cookie).toBe(
       `foo=${encodeURIComponent(JSON.stringify({ bar: true }))}; path=/`,
     );
   });
@@ -75,7 +75,7 @@ describe('cookie', () => {
       sameSite: 'strict',
     });
 
-    expect(document.cookie).toBe(`foo=bar; samesite=strict; secure`);
+    expect(globalThis?.document?.cookie).toBe(`foo=bar; samesite=strict; secure`);
   });
 
   it('should throw if name or value is not provided', () => {
@@ -87,7 +87,7 @@ describe('cookie', () => {
   it('should expire cookie', () => {
     expireCookie('foo');
 
-    expect(document.cookie).toBe('foo=expired; max-age=0');
+    expect(globalThis?.document?.cookie).toBe('foo=expired; max-age=0');
   });
 
   it('should expire cookie with options', () => {
@@ -96,7 +96,7 @@ describe('cookie', () => {
       domain: 'daily.dev',
     });
 
-    expect(document.cookie).toBe(
+    expect(globalThis?.document?.cookie).toBe(
       'foo=expired; domain=daily.dev; max-age=0; path=/',
     );
   });

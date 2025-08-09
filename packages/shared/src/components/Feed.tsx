@@ -368,13 +368,13 @@ export default function Feed<T>({
 
   useEffect(() => {
     return () => {
-      document.body.classList.remove('hidden-scrollbar');
+      globalThis?.document?.body.classList.remove('hidden-scrollbar');
     };
   }, []);
 
   useEffect(() => {
     if (!selectedPost) {
-      document.body.classList.remove('hidden-scrollbar');
+      globalThis?.document?.body.classList.remove('hidden-scrollbar');
     }
   }, [selectedPost]);
 
@@ -399,7 +399,7 @@ export default function Feed<T>({
     row?: number;
     column?: number;
   }) => {
-    document.body.classList.add('hidden-scrollbar');
+    globalThis?.document?.body.classList.add('hidden-scrollbar');
     callback?.();
     setPostModalIndex({ index, row, column });
     onOpenModal(index);

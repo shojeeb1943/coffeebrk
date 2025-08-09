@@ -36,7 +36,7 @@ export default function useLogSharedProps(
     const queryObject = { ...query };
 
     const initialQuerySearchParams = new URLSearchParams(
-      window.location.search,
+      globalThis?.window?.location.search,
     );
 
     // initial useRouter.query can be empty on prerendered static pages

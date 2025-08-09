@@ -44,7 +44,7 @@ export class ErrorBoundary extends Component<
       event_name: LogEvent.GlobalError,
       extra: JSON.stringify({
         msg: error.message,
-        url: window.location.href,
+        url: globalThis?.window?.location.href,
         error,
         stack: errorInfo.componentStack,
         digest: errorInfo.digest,

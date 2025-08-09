@@ -28,11 +28,11 @@ export default function useLogPageView(): MutableRefObject<() => void> {
 
     const handleLifecycle = (event: CustomEvent) =>
       lifecycleCallbackRef.current(event);
-    window.addEventListener('statechange', handleLifecycle);
+    globalThis?.window?.addEventListener('statechange', handleLifecycle);
 
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
-      window.removeEventListener('statechange', handleLifecycle);
+      globalThis?.window?.removeEventListener('statechange', handleLifecycle);
     };
     // @NOTE see https://dailydotdev.atlassian.net/l/cp/dK9h1zoM
     // eslint-disable-next-line react-hooks/exhaustive-deps
