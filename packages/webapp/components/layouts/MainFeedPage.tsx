@@ -48,7 +48,8 @@ export default function MainFeedPage({
   searchChildren,
 }: MainFeedPageProps): ReactElement {
   const router = useRouter();
-  const { user } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const user = authContext?.user;
   const isFinderPage = router?.pathname === '/search/posts' || isFinder;
   const isMyFeedURL = router?.query?.slugOrId === user?.id;
   const [feedName, setFeedName] = useState(
