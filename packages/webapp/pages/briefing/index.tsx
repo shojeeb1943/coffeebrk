@@ -337,4 +337,12 @@ const seo: NextSeoProps = {
 Page.getLayout = getBriefingLayout;
 Page.layoutProps = { seo, screenCentered: false };
 
+
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default Page;

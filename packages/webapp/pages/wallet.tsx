@@ -460,4 +460,12 @@ const seo: NextSeoProps = {
 Wallet.getLayout = getWalletLayout;
 Wallet.layoutProps = { seo, screenCentered: false };
 
+
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default Wallet;

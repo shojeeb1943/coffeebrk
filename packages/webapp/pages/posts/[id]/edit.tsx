@@ -207,4 +207,12 @@ function EditPost(): ReactElement {
 
 EditPost.getLayout = getMainLayout;
 
+
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default EditPost;

@@ -241,4 +241,12 @@ function CreatePost(): ReactElement {
 CreatePost.getLayout = getMainLayout;
 CreatePost.layoutProps = { seo };
 
+
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default CreatePost;

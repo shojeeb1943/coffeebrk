@@ -72,4 +72,12 @@ const Page = (): ReactElement => {
 Page.getLayout = getSettingsLayout;
 Page.layoutProps = { seo };
 
+
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default Page;

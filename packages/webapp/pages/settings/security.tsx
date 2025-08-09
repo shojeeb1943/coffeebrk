@@ -240,4 +240,12 @@ const AccountSecurityPage = (): ReactElement => {
 AccountSecurityPage.getLayout = getSettingsLayout;
 AccountSecurityPage.layoutProps = { seo };
 
+
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default AccountSecurityPage;
