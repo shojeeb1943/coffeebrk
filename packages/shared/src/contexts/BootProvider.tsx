@@ -180,14 +180,25 @@ export const BootDataProvider = ({
           console.warn('Boot data fetch failed, using fallback:', err);
           return {
             user: null,
-            visit: null,
+            visit: { visitId: 'fallback-visit' },
             feeds: [],
-            settings: {},
+            settings: {
+              theme: 'dark',
+              spaciness: 'roomy',
+              insaneMode: false,
+              showTopSites: true,
+              sidebarExpanded: true,
+              companionExpanded: false,
+              sortingEnabled: false,
+              optOutWeeklyGoal: false,
+              optOutCompanion: false,
+              autoDismissNotifications: true,
+            },
             alerts: {},
             notifications: { unreadNotificationsCount: 0 },
             squads: [],
             exp: {},
-            geo: null,
+            geo: { country: 'US', region: 'US' },
           };
         }
         throw err;
