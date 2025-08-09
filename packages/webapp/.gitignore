@@ -6,3 +6,4 @@ public/sw.js
 workbox-*.js
 
 certificates
+.vercel

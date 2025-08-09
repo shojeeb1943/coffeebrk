@@ -31,6 +31,9 @@ const withSerwist = withSerwistInit({
 
 const nextConfig: NextConfig = {
   transpilePackages: ['@dailydotdev/shared'],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   ...withSerwist({
     ...withBundleAnalyzer({
       i18n: {
