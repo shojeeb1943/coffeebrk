@@ -170,14 +170,40 @@ export const BootDataProvider = ({
   } = useQuery<Partial<Boot>>({
     queryKey: BOOT_QUERY_KEY,
     queryFn: async () => {
-      const result = await getBootData(app);
-      preloadFeedsRef.current({ feeds: result.feeds, user: result.user });
-
-      return result;
+      try {
+        const result = await getBootData(app);
+        preloadFeedsRef.current({ feeds: result.feeds, user: result.user });
+        return result;
+      } catch (err) {
+        // In production, return minimal boot data to prevent complete failure
+        if (process.env.NODE_ENV === 'production') {
+          console.warn('Boot data fetch failed, using fallback:', err);
+          return {
+            user: null,
+            visit: null,
+            feeds: [],
+            settings: {},
+            alerts: {},
+            notifications: { unreadNotificationsCount: 0 },
+            squads: [],
+            exp: {},
+            geo: null,
+          };
+        }
+        throw err;
+      }
     },
     refetchOnWindowFocus: shouldRefetch,
     staleTime: STALE_TIME,
     enabled: !isExtension || !!hostGranted,
+    retry: (failureCount, error) => {
+      // Retry up to 3 times in production
+      if (process.env.NODE_ENV === 'production' && failureCount < 3) {
+        return true;
+      }
+      return false;
+    },
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 
   const isBootReady = isFetched && !isError;
@@ -281,6 +307,19 @@ export const BootDataProvider = ({
   }, [logged, shouldRefetch, updateBootData]);
 
   if (error) {
+    // In production, try to recover gracefully instead of showing error immediately
+    if (process.env.NODE_ENV === 'production' && !isFetched) {
+      // Return a loading state while we retry
+      return (
+        <div className="mx-2 flex h-screen items-center justify-center">
+          <div className="text-center">
+            <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-accent-cabbage-default border-t-transparent"></div>
+            <p className="text-text-secondary">Loading...</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="mx-2 flex h-screen items-center justify-center">
         <ServerError />
