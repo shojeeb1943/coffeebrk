@@ -60,4 +60,11 @@ function SquadDiscoveryPage(): ReactElement {
 SquadDiscoveryPage.getLayout = getLayout;
 SquadDiscoveryPage.layoutProps = { ...mainFeedLayoutProps, seo };
 
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default SquadDiscoveryPage;
