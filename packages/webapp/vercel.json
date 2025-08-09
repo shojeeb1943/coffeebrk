@@ -3,6 +3,6 @@
     "silent": true
   },
   "framework": "nextjs",
-  "installCommand": "pnpm install --no-frozen-lockfile && node ../../copy-shared-files.js",
-  "buildCommand": "pnpm run build"
+  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile && node copy-shared-files.js",
+  "buildCommand": "cd ../.. && pnpm --filter webapp build"
 }
