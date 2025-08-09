@@ -45,6 +45,7 @@ import {
 import Seo, { defaultSeo, defaultSeoTitle } from '../next-seo';
 import useWebappVersion from '../hooks/useWebappVersion';
 import { PixelsProvider } from '../context/PixelsContext';
+import GlobalErrorBoundary from '../components/GlobalErrorBoundary';
 
 structuredCloneJsonPolyfill();
 
@@ -229,9 +230,11 @@ function InternalApp({ Component, pageProps, router }: AppProps): ReactElement {
       />
       {!!seo && <NextSeo {...seo} />}
       <LazyModalElement />
-      <DndContextProvider>
-        {getLayout(<Component {...pageProps} />, pageProps, layoutProps)}
-      </DndContextProvider>
+      <GlobalErrorBoundary>
+        <DndContextProvider>
+          {getLayout(<Component {...pageProps} />, pageProps, layoutProps)}
+        </DndContextProvider>
+      </GlobalErrorBoundary>
       {showBanner && !isFunnel && (
         <CookieBanner
           onAccepted={onAcceptCookies}
