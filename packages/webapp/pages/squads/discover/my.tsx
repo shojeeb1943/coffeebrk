@@ -67,4 +67,11 @@ const seo: NextSeoProps = { ...defaultSeo, title: 'My Squads' };
 MySquadsPage.getLayout = getLayout;
 MySquadsPage.layoutProps = { ...mainFeedLayoutProps, seo };
 
+// Disable static generation to avoid build-time errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default MySquadsPage;
