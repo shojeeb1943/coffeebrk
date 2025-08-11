@@ -15,6 +15,7 @@
   },
   "prettier": "@dailydotdev/prettier-config",
   "dependencies": {
+    "@dailydotdev/shared": "workspace:*",
     "@kickass-coderz/react": "^0.0.4",
     "@marsidev/react-turnstile": "^1.1.0",
     "@paddle/paddle-js": "1.4.0",
