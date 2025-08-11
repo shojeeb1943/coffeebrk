@@ -1,0 +1,18 @@
+{
+  "github": {
+    "silent": true
+  },
+  "installCommand": "pnpm install --no-frozen-lockfile && node copy-shared-files.js",
+  "buildCommand": "pnpm --filter webapp build",
+  "outputDirectory": "packages/webapp/.next",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "/api",
+    "NEXT_PUBLIC_SUBS_URL": "wss://api.daily.dev/graphql",
+    "NEXT_PUBLIC_DOMAIN": "localhost",
+    "NEXT_PUBLIC_WEBAPP_URL": "/",
+    "NEXT_PUBLIC_AUTH_URL": "/api",
+    "NEXT_PUBLIC_HEIMDALL_URL": "/api",
+    "NEXT_PUBLIC_EXPERIMENTATION_KEY": "ACCB0B287D9C5EACBA90999B3356069F",
+    "CURRENT_VERSION": "1.0.0"
+  }
+}
