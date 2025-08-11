@@ -3,8 +3,8 @@
     "silent": true
   },
   "framework": "nextjs",
-  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile",
-  "buildCommand": "node build-for-vercel.js",
+  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile && ls -la copy-shared-files.js && node copy-shared-files.js",
+  "buildCommand": "cd ../.. && pnpm --filter webapp build",
   "env": {
     "NEXT_PUBLIC_API_URL": "/api",
     "NEXT_PUBLIC_SUBS_URL": "wss://api.daily.dev/graphql",
