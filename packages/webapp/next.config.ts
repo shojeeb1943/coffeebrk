@@ -143,6 +143,14 @@ const nextConfig: NextConfig = {
           });
         }
 
+        // For standalone deployment, proxy external API calls to local mock endpoints
+        if (process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_DOMAIN === 'localhost') {
+          rewrites.unshift({
+            source: '/external-api/:path*',
+            destination: '/api/:path*',
+          });
+        }
+
         return {
           beforeFiles: [
             {
