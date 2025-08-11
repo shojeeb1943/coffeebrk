@@ -3,8 +3,9 @@
     "silent": true
   },
   "framework": "nextjs",
-  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile && cd packages/webapp && npm install --production=false",
-  "buildCommand": "npm run build",
+  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile",
+  "buildCommand": "cd ../.. && pnpm --filter webapp build",
+  "outputDirectory": ".next",
   "env": {
     "NEXT_PUBLIC_API_URL": "/api",
     "NEXT_PUBLIC_SUBS_URL": "wss://api.daily.dev/graphql",
