@@ -3,7 +3,7 @@
     "silent": true
   },
   "framework": "nextjs",
-  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile",
+  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile && cd packages/webapp && npm install",
   "buildCommand": "cd ../.. && pnpm --filter webapp build",
   "env": {
     "NEXT_PUBLIC_API_URL": "/api",
